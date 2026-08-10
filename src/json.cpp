@@ -9,14 +9,14 @@ std::string json_string(const std::string& value) {
     s << '"';
     for (unsigned char c : value) {
         switch (c) {
-        case '"': s << "\\""; break;
+        case '"': s << "\\\""; break;
         case '\': s << "\\"; break;
-        case '\n': s << "\n"; break;
-        case '\r': s << "\r"; break;
-        case '\t': s << "\t"; break;
+        case '\n': s << "\\n"; break;
+        case '\r': s << "\\r"; break;
+        case '\t': s << "\\t"; break;
         default:
             // Escape non-ASCII bytes too: output remains valid JSON for arbitrary binary stdout.
-            if (c < 32 || c >= 127) s << "\u00" << std::hex << std::setw(2) << std::setfill('0') << int(c) << std::dec;
+            if (c < 32 || c >= 127) s << "\\u00" << std::hex << std::setw(2) << std::setfill('0') << int(c) << std::dec;
             else s << c;
         }
     }
