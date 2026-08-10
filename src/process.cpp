@@ -82,3 +82,79 @@ ProcessResult run_process(const std::vector<std::string>& args, double timeout) 
 }
 }
 #endif
+
+#ifdef _WIN32
+#define NOMINMAX
+#include <windows.h>
+namespace corelens {
+static std::string quote_windows(const std::string& arg) {
+    std::string result = "\""; size_t slashes = 0;
+    for (char c : arg) {
+        if (c == '\\') { ++slashes; continue; }
+        if (c == '"') result.append(slashes * 2 + 1, '\\');
+        else result.append(slashes, '\\');
+        slashes = 0; result += c;
+    }
+    result.append(slashes * 2, '\\'); result += '"'; return result;
+}
+ProcessResult run_process(const std::vector<std::string>& args, double timeout) {
+    if (args.empty() || timeout <= 0) throw std::invalid_argument("command and positive timeout required");
+    std::string command;
+    for (const auto& arg : args) { if (!command.empty()) command += ' '; command += quote_windows(arg); }
+    SECURITY_ATTRIBUTES security{sizeof(SECURITY_ATTRIBUTES), nullptr, TRUE};
+    HANDLE out_read = nullptr, out_write = nullptr, err_read = nullptr, err_write = nullptr;
+    HANDLE job = CreateJobObjectA(nullptr, nullptr);
+    auto cleanup = [&] {
+        for (HANDLE h : {out_read, out_write, err_read, err_write, job}) if (h) CloseHandle(h);
+    };
+    if (!job || !CreatePipe(&out_read, &out_write, &security, 0) || !CreatePipe(&err_read, &err_write, &security, 0)) {
+        cleanup(); throw std::runtime_error("could not create process resources");
+    }
+    SetHandleInformation(out_read, HANDLE_FLAG_INHERIT, 0);
+    SetHandleInformation(err_read, HANDLE_FLAG_INHERIT, 0);
+    JOBOBJECT_EXTENDED_LIMIT_INFORMATION limits{};
+    limits.BasicLimitInformation.LimitFlags = JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE;
+    SetInformationJobObject(job, JobObjectExtendedLimitInformation, &limits, sizeof(limits));
+    STARTUPINFOA startup{}; startup.cb = sizeof(startup);
+    startup.dwFlags = STARTF_USESTDHANDLES;
+    startup.hStdOutput = out_write; startup.hStdError = err_write; startup.hStdInput = GetStdHandle(STD_INPUT_HANDLE);
+    PROCESS_INFORMATION process{};
+    auto start = std::chrono::steady_clock::now();
+    if (!CreateProcessA(nullptr, command.data(), nullptr, nullptr, TRUE, CREATE_NO_WINDOW | CREATE_SUSPENDED, nullptr, nullptr, &startup, &process)) {
+        auto error = GetLastError(); cleanup();
+        throw std::runtime_error("CreateProcess failed with code " + std::to_string(error));
+    }
+    if (!AssignProcessToJobObject(job, process.hProcess)) {
+        TerminateProcess(process.hProcess, 127); CloseHandle(process.hThread); CloseHandle(process.hProcess); cleanup();
+        throw std::runtime_error("could not assign workload to process job");
+    }
+    ResumeThread(process.hThread); CloseHandle(process.hThread);
+    CloseHandle(out_write); out_write = nullptr; CloseHandle(err_write); err_write = nullptr;
+    ProcessResult result;
+    for (;;) {
+        for (HANDLE h : {out_read, err_read}) {
+            for (int batch = 0; batch < 32; ++batch) {
+                DWORD available = 0, count = 0;
+                if (!PeekNamedPipe(h, nullptr, 0, nullptr, &available, nullptr) || !available) break;
+                char buffer[8192];
+                if (!ReadFile(h, buffer, available < sizeof(buffer) ? available : sizeof(buffer), &count, nullptr)) break;
+                append_output(h == out_read ? result.out : result.err, buffer, count, result);
+            }
+        }
+        if (WaitForSingleObject(process.hProcess, 1) == WAIT_OBJECT_0) break;
+        if (std::chrono::duration<double>(std::chrono::steady_clock::now() - start).count() >= timeout) {
+            result.timed_out = true; TerminateJobObject(job, 124); WaitForSingleObject(process.hProcess, INFINITE); break;
+        }
+    }
+    result.elapsed_seconds = std::chrono::duration<double>(std::chrono::steady_clock::now() - start).count();
+    DWORD exit_code; GetExitCodeProcess(process.hProcess, &exit_code); result.exit_code = static_cast<int>(exit_code);
+    // Drain output written just before exit.
+    for (HANDLE h : {out_read, err_read}) {
+        DWORD available = 0, count = 0; char buffer[8192];
+        while (PeekNamedPipe(h, nullptr, 0, nullptr, &available, nullptr) && available && ReadFile(h, buffer, available < sizeof(buffer) ? available : sizeof(buffer), &count, nullptr))
+            append_output(h == out_read ? result.out : result.err, buffer, count, result);
+    }
+    CloseHandle(process.hProcess); cleanup(); return result;
+}
+}
+#endif
