@@ -40,3 +40,44 @@ Counters parse_perf(const std::string& data) {
     return result;
 }
 }
+
+#include <filesystem>
+#include <fstream>
+#include <stdexcept>
+#ifndef _WIN32
+#include <unistd.h>
+#endif
+namespace corelens {
+Profile profile(const std::vector<std::string>& args, double timeout, bool use_perf) {
+    Profile p;
+    p.counters = parse_perf("");
+    if (!use_perf) {
+        p.process = run_process(args, timeout);
+        p.counter_error = "hardware counters were not requested";
+        return p;
+    }
+#ifdef _WIN32
+    throw std::runtime_error("Linux perf requires Linux; omit --perf for timing on Windows");
+#else
+    std::string path = (std::filesystem::temp_directory_path() / "corelens-perf-XXXXXX").string();
+    std::vector<char> writable(path.begin(), path.end()); writable.push_back(0);
+    int fd = mkstemp(writable.data());
+    if (fd < 0) throw std::runtime_error("could not create perf result file");
+    close(fd); path = writable.data();
+    struct Cleanup { std::string path; ~Cleanup() { std::error_code e; std::filesystem::remove(path, e); } } cleanup{path};
+    std::vector<std::string> command = {"perf", "stat", "--no-big-num", "-x", ";", "-e",
+        "cycles,instructions,cache-references,cache-misses,branches,branch-misses", "-o", path, "--"};
+    command.insert(command.end(), args.begin(), args.end());
+    // perf's CSV numbers must be independent of the user's numeric locale.
+    command.insert(command.begin(), {"env", "LC_ALL=C"});
+    p.process = run_process(command, timeout);
+    std::ifstream input(path); std::ostringstream content; content << input.rdbuf();
+    p.counters = parse_perf(content.str());
+    bool any = false;
+    for (const auto& [name, c] : p.counters) { (void)name; if (c.value) any = true; }
+    if (!any) p.counter_error = "perf returned no usable counters; inspect stderr, perf installation, event support, and perf_event_paranoid";
+    p.derived = derive_metrics(p.counters);
+    return p;
+#endif
+}
+}
