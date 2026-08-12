@@ -81,3 +81,16 @@ Profile profile(const std::vector<std::string>& args, double timeout, bool use_p
 #endif
 }
 }
+
+namespace corelens {
+std::map<std::string, std::optional<double>> derive_metrics(const Counters& counters) {
+    auto ratio = [&](const std::string& numerator, const std::string& denominator) -> std::optional<double> {
+        auto n = counters.find(numerator), d = counters.find(denominator);
+        if (n == counters.end() || d == counters.end() || !n->second.value || !d->second.value || *d->second.value <= 0) return std::nullopt;
+        return *n->second.value / *d->second.value;
+    };
+    return {{"ipc", ratio("instructions", "cycles")},
+            {"cache_miss_ratio", ratio("cache-misses", "cache-references")},
+            {"branch_miss_ratio", ratio("branch-misses", "branches")}};
+}
+}
