@@ -28,11 +28,25 @@ def parser():
     measurement_options(compare)
     compare.set_defaults(handler=lambda a: __import__("corelens.compare", fromlist=["compare"]).compare(
         a.source, a.build_dir, a.compiler, a.flag, a.arg, **measurement_kwargs(a)))
+    analysis = sub.add_parser("analyze", help="inspect LLVM assembly and suggest experiments")
+    analysis.add_argument("binary")
+    analysis.add_argument("--objdump", default="llvm-objdump")
+    analysis.add_argument("--function")
+    analysis.add_argument("--benchmark", help="optional bench JSON for counter evidence")
+    analysis.add_argument("--output")
+    analysis.set_defaults(handler=analyze_handler)
     return p
 
 
 def strip_separator(command):
     return command[1:] if command and command[0] == "--" else command
+
+
+def analyze_handler(a):
+    from .advice import analyze, advise
+    assembly = analyze(a.binary, a.native, a.objdump, a.function)
+    benchmark = json.loads(Path(a.benchmark).read_text(encoding="utf-8")) if a.benchmark else None
+    return {**assembly, "advice": advise(assembly, benchmark)}
 
 
 def source_options(p):
