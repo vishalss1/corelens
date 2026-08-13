@@ -84,7 +84,9 @@ ProcessResult run_process(const std::vector<std::string>& args, double timeout) 
 #endif
 
 #ifdef _WIN32
+#ifndef NOMINMAX
 #define NOMINMAX
+#endif
 #include <windows.h>
 namespace corelens {
 static std::string quote_windows(const std::string& arg) {

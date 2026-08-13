@@ -10,7 +10,7 @@ std::string json_string(const std::string& value) {
     for (unsigned char c : value) {
         switch (c) {
         case '"': s << "\\\""; break;
-        case '\': s << "\\"; break;
+        case '\\': s << "\\\\"; break;
         case '\n': s << "\\n"; break;
         case '\r': s << "\\r"; break;
         case '\t': s << "\\t"; break;
