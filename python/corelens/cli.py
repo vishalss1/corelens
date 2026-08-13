@@ -23,11 +23,29 @@ def parser():
     bench.add_argument("program", nargs=argparse.REMAINDER)
     bench.set_defaults(handler=lambda a: __import__("corelens.benchmark", fromlist=["benchmark"]).benchmark(
         strip_separator(a.program), a.native, a.repeats, a.warmups, a.timeout, a.perf, a.cpu, a.units))
+    compare = sub.add_parser("compare", help="build and compare O0, O2, and O3")
+    source_options(compare)
+    measurement_options(compare)
+    compare.set_defaults(handler=lambda a: __import__("corelens.compare", fromlist=["compare"]).compare(
+        a.source, a.build_dir, a.compiler, a.flag, a.arg, **measurement_kwargs(a)))
     return p
 
 
 def strip_separator(command):
     return command[1:] if command and command[0] == "--" else command
+
+
+def source_options(p):
+    p.add_argument("source")
+    p.add_argument("--compiler", default="clang++")
+    p.add_argument("--build-dir", default="out/compare")
+    p.add_argument("--flag", action="append", default=[])
+    p.add_argument("--arg", action="append", default=[], help="one workload argument; repeat for multiple arguments")
+
+
+def measurement_kwargs(a):
+    return {"native": a.native, "repeats": a.repeats, "warmups": a.warmups, "timeout": a.timeout,
+            "perf": a.perf, "cpu": a.cpu, "units": a.units}
 
 
 def measurement_options(p):
