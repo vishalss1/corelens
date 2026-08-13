@@ -32,19 +32,52 @@ def measure(command, native="corelens-native", timeout=30, perf=False, cpu=None)
     return result
 
 
-def benchmark(command, native="corelens-native", repeats=7, warmups=2, timeout=30, perf=False, cpu=None, units=1):
-    if repeats < 2 or warmups < 0 or not math.isfinite(units) or units <= 0:
-        raise ValueError("repeats >= 2, warmups >= 0, and finite positive units required")
-    expected = None
-    samples = []
-    for i in range(warmups + repeats):
-        sample = measure(command, native, timeout, perf, cpu)
-        if expected is not None and sample["output_sha256"] != expected:
-            raise RuntimeError("workload output changed between runs; use deterministic validation output")
-        expected = sample["output_sha256"]
-        if i >= warmups:
-            samples.append(sample)
+def scheduled_benchmarks(commands, native="corelens-native", repeats=7, warmups=2, timeout=30, perf=False, cpu=None, units=1, seed=713):
+    import random
     from .stats import summarize
-    return {"schema_version": 1, "command": list(command), "warmups": warmups, "units": units,
-            "perf": perf, "cpu": cpu, "output_sha256": expected,
-            "samples": samples, "summary": summarize(samples, units)}
+    if not commands or repeats < 2 or warmups < 0 or not math.isfinite(units) or units <= 0:
+        raise ValueError("commands, repeats >= 2, warmups >= 0, and finite positive units required")
+    rng = random.Random(seed)
+    samples = {name: [] for name in commands}
+    order_log = []
+    expected = None
+
+    def checked(command, counters=False):
+        nonlocal expected
+        sample = measure(command, native, timeout, counters, cpu)
+        if expected is not None and sample["output_sha256"] != expected:
+            raise RuntimeError("workload output differs across trials or variants; candidate correctness is unverified")
+        expected = sample["output_sha256"]
+        return sample
+
+    for round_number in range(warmups + repeats):
+        order = list(commands)
+        rng.shuffle(order)
+        if round_number >= warmups:
+            order_log.append(order)
+        for name in order:
+            sample = checked(commands[name])
+            if round_number >= warmups:
+                samples[name].append(sample)
+    # Collect counters in separate trials, keeping perf startup and instrumentation out of runtime comparisons.
+    if perf:
+        for index in range(repeats):
+            order = list(commands)
+            rng.shuffle(order)
+            for name in order:
+                counted = checked(commands[name], True)
+                samples[name][index]["counters"] = counted["counters"]
+                samples[name][index]["derived"] = counted["derived"]
+                samples[name][index]["counter_elapsed_seconds"] = counted["elapsed_seconds"]
+                samples[name][index]["counter_error"] = counted["counter_error"]
+    results = {}
+    for name, command in commands.items():
+        results[name] = {"schema_version": 1, "command": list(command), "warmups": warmups, "units": units,
+                         "perf": perf, "cpu": cpu, "output_sha256": expected, "samples": samples[name],
+                         "summary": summarize(samples[name], units)}
+    return results, order_log
+
+
+def benchmark(command, native="corelens-native", repeats=7, warmups=2, timeout=30, perf=False, cpu=None, units=1):
+    results, order = scheduled_benchmarks({"workload": command}, native, repeats, warmups, timeout, perf, cpu, units)
+    return {**results["workload"], "trial_order": order}
