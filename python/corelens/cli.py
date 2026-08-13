@@ -18,7 +18,26 @@ def parser():
     build.add_argument("--output")
     build.set_defaults(handler=lambda a: __import__("corelens.build", fromlist=["build_matrix"]).build_matrix(
         a.source, a.build_dir, a.compiler, flags=a.flag))
+    bench = sub.add_parser("bench", help="benchmark an existing executable")
+    measurement_options(bench)
+    bench.add_argument("program", nargs=argparse.REMAINDER)
+    bench.set_defaults(handler=lambda a: __import__("corelens.benchmark", fromlist=["benchmark"]).benchmark(
+        strip_separator(a.program), a.native, a.repeats, a.warmups, a.timeout, a.perf, a.cpu, a.units))
     return p
+
+
+def strip_separator(command):
+    return command[1:] if command and command[0] == "--" else command
+
+
+def measurement_options(p):
+    p.add_argument("--repeats", type=int, default=7)
+    p.add_argument("--warmups", type=int, default=2)
+    p.add_argument("--timeout", type=float, default=30)
+    p.add_argument("--perf", action="store_true")
+    p.add_argument("--cpu", type=int, help="Linux taskset CPU index")
+    p.add_argument("--units", type=float, default=1, help="work units processed per invocation")
+    p.add_argument("--output")
 
 
 def main(argv=None):
