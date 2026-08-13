@@ -1,4 +1,5 @@
 #include "corelens/model.hpp"
+#include <algorithm>
 #include <cmath>
 #include <iostream>
 #include <stdexcept>
@@ -11,7 +12,7 @@ static double positive(const std::string& value) {
 int main(int argc, char** argv) {
     try {
         if (argc < 2 || std::string(argv[1]) == "--help") {
-            std::cout << "CoreLens 0.1.0\nUsage:\n  corelens-native run [--perf] [--timeout SECONDS] -- PROGRAM [ARGS...]\n";
+            std::cout << "CoreLens 0.1.0\nUsage:\n  corelens-native run [--perf] [--timeout SECONDS] -- PROGRAM [ARGS...]\n  corelens-native analyze BINARY [--objdump PATH] [--function SUBSTRING]\n";
             return argc < 2 ? 2 : 0;
         }
         std::string command = argv[1];
@@ -29,6 +30,25 @@ int main(int argc, char** argv) {
             auto p = corelens::profile(args, timeout, perf);
             std::cout << corelens::profile_json(p) << '\n';
             return p.process.timed_out ? 124 : (p.process.exit_code == 0 ? 0 : 1);
+        }
+        if (command == "analyze") {
+            if (argc < 3) throw std::invalid_argument("analyze requires a binary");
+            std::string objdump = "llvm-objdump", filter;
+            for (int i = 3; i < argc; ++i) {
+                std::string option = argv[i];
+                if (option == "--objdump" && i + 1 < argc) objdump = argv[++i];
+                else if (option == "--function" && i + 1 < argc) filter = argv[++i];
+                else throw std::invalid_argument("unknown or incomplete option: " + option);
+            }
+            auto functions = corelens::disassemble(argv[2], objdump);
+            if (!filter.empty()) {
+                functions.erase(std::remove_if(functions.begin(), functions.end(), [&](const auto& f) {
+                    return f.name.find(filter) == std::string::npos;
+                }), functions.end());
+                if (functions.empty()) throw std::invalid_argument("no functions match the filter");
+            }
+            std::cout << corelens::assembly_json(functions, corelens::analyze_assembly(functions)) << '\n';
+            return 0;
         }
         throw std::invalid_argument("unknown command: " + command);
     } catch (const std::exception& e) {
