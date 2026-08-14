@@ -35,6 +35,16 @@ def parser():
     analysis.add_argument("--benchmark", help="optional bench JSON for counter evidence")
     analysis.add_argument("--output")
     analysis.set_defaults(handler=analyze_handler)
+    experiment = sub.add_parser("experiment", help="measure candidate compiler flags or source changes")
+    source_options(experiment)
+    experiment.set_defaults(build_dir="out/experiment")
+    measurement_options(experiment)
+    experiment.add_argument("--candidate-flag", action="append", default=[])
+    experiment.add_argument("--baseline-flag", action="append", default=[])
+    experiment.add_argument("--candidate-source")
+    experiment.set_defaults(handler=lambda a: __import__("corelens.experiment", fromlist=["experiment"]).experiment(
+        a.source, a.build_dir, a.compiler, a.flag, a.candidate_flag, a.baseline_flag, a.candidate_source, a.arg,
+        **measurement_kwargs(a)))
     return p
 
 
