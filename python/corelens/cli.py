@@ -45,6 +45,12 @@ def parser():
     experiment.set_defaults(handler=lambda a: __import__("corelens.experiment", fromlist=["experiment"]).experiment(
         a.source, a.build_dir, a.compiler, a.flag, a.candidate_flag, a.baseline_flag, a.candidate_source, a.arg,
         **measurement_kwargs(a)))
+    report = sub.add_parser("report", help="export benchmark JSON as HTML or Markdown")
+    report.add_argument("input")
+    report.add_argument("--format", choices=["html", "markdown"], default="html")
+    report.add_argument("--destination", required=True)
+    report.set_defaults(handler=lambda a: __import__("corelens.report", fromlist=["export"]).export(
+        a.input, a.destination, a.format))
     return p
 
 
