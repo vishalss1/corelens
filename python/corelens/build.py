@@ -6,7 +6,7 @@ import subprocess
 from pathlib import Path
 
 
-def build_matrix(source, output_dir, compiler="clang++", levels=("O0", "O2", "O3"), flags=()):
+def build_matrix(source, output_dir, compiler="clang++", levels=("O0", "O2", "O3"), flags=(), remarks=False):
     source = Path(source).resolve()
     if not source.is_file():
         raise ValueError(f"source file does not exist: {source}")
@@ -22,12 +22,17 @@ def build_matrix(source, output_dir, compiler="clang++", levels=("O0", "O2", "O3
         binary = output_dir / (f"{source.stem}-{level}" + (".exe" if platform.system() == "Windows" else ""))
         # C sources use the compiler's C language mode even when the driver is clang++.
         language = ["-x", "c", "-std=c11"] if source.suffix.lower() == ".c" else ["-std=c++17"]
-        command = [compiler, *language, f"-{level}", "-g", *flags, str(source), "-o", str(binary)]
+        record = output_dir / f"{source.stem}-{level}.opt.yaml"
+        remark_flags = ["-fsave-optimization-record", f"-foptimization-record-file={record}"] if remarks else []
+        command = [compiler, *language, f"-{level}", "-g", *flags, *remark_flags, str(source), "-o", str(binary)]
         completed = subprocess.run(command, capture_output=True, text=True, timeout=300, check=False)
         if completed.returncode:
             raise RuntimeError(f"compilation failed for {level}: {completed.stderr}")
         builds.append({"name": level, "binary": str(binary), "command": command, "diagnostics": completed.stderr,
                        "sha256": hashlib.sha256(binary.read_bytes()).hexdigest()})
+        if remarks:
+            from .remarks import read_remarks
+            builds[-1]["optimization_remarks"] = read_remarks(record)
     manifest = {"schema_version": 1, "source": str(source), "source_sha256": hashlib.sha256(source.read_bytes()).hexdigest(),
                 "compiler_version": version.stdout.strip(), "flags": list(flags), "builds": builds}
     (output_dir / "manifest.json").write_text(json.dumps(manifest, indent=2), encoding="utf-8")

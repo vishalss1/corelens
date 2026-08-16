@@ -15,9 +15,10 @@ def parser():
     build.add_argument("--compiler", default="clang++")
     build.add_argument("--build-dir", default="out/builds")
     build.add_argument("--flag", action="append", default=[], help="extra compiler flag; use --flag=-march=native")
+    build.add_argument("--remarks", action="store_true", help="save Clang optimization records")
     build.add_argument("--output")
     build.set_defaults(handler=lambda a: __import__("corelens.build", fromlist=["build_matrix"]).build_matrix(
-        a.source, a.build_dir, a.compiler, flags=a.flag))
+        a.source, a.build_dir, a.compiler, flags=a.flag, remarks=a.remarks))
     bench = sub.add_parser("bench", help="benchmark an existing executable")
     measurement_options(bench)
     bench.add_argument("program", nargs=argparse.REMAINDER)
