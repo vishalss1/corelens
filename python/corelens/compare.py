@@ -18,9 +18,24 @@ def counter_deltas(baseline, candidate):
 
 
 def environment():
-    return {"timestamp_utc": datetime.now(timezone.utc).isoformat(), "system": platform.system(),
+    context = {"timestamp_utc": datetime.now(timezone.utc).isoformat(), "system": platform.system(),
             "release": platform.release(), "machine": platform.machine(), "processor": platform.processor(),
             "python": platform.python_version()}
+    if platform.system() == "Linux":
+        from pathlib import Path
+        import os
+        for key, path in (("cpuinfo", "/proc/cpuinfo"), ("governor_cpu0", "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor"),
+                          ("perf_event_paranoid", "/proc/sys/kernel/perf_event_paranoid")):
+            try:
+                text = Path(path).read_text().strip()
+                if key == "cpuinfo":
+                    text = next((line.split(":", 1)[1].strip() for line in text.splitlines() if line.startswith("model name")), "unknown")
+                context[key] = text
+            except OSError:
+                context[key] = None
+        if hasattr(os, "sched_getaffinity"):
+            context["allowed_cpus"] = sorted(os.sched_getaffinity(0))
+    return context
 
 
 def comparison(baseline, candidate, paired=True):
