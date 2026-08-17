@@ -28,8 +28,11 @@ def parser():
     compare = sub.add_parser("compare", help="build and compare O0, O2, and O3")
     source_options(compare)
     measurement_options(compare)
+    compare.add_argument("--assembly", action="store_true", help="attach static LLVM disassembly analysis")
+    compare.add_argument("--remarks", action="store_true", help="attach Clang optimization records")
+    compare.add_argument("--objdump", default="llvm-objdump")
     compare.set_defaults(handler=lambda a: __import__("corelens.compare", fromlist=["compare"]).compare(
-        a.source, a.build_dir, a.compiler, a.flag, a.arg, **measurement_kwargs(a)))
+        a.source, a.build_dir, a.compiler, a.flag, a.arg, assembly=a.assembly, remarks=a.remarks, objdump=a.objdump, **measurement_kwargs(a)))
     analysis = sub.add_parser("analyze", help="inspect LLVM assembly and suggest experiments")
     analysis.add_argument("binary")
     analysis.add_argument("--objdump", default="llvm-objdump")

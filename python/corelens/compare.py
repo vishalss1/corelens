@@ -45,10 +45,23 @@ def comparison(baseline, candidate, paired=True):
             "output_matches": baseline["output_sha256"] == candidate["output_sha256"]}
 
 
-def compare(source, build_dir="out/compare", compiler="clang++", flags=(), program_args=(), **measurement):
-    manifest = build_matrix(source, build_dir, compiler, flags=flags)
+def compare(source, build_dir="out/compare", compiler="clang++", flags=(), program_args=(), assembly=False, remarks=False, objdump="llvm-objdump", **measurement):
+    if any(flag.startswith("-O") for flag in flags):
+        raise ValueError("compare controls optimization levels; pass other compiler flags with --flag")
+    manifest = build_matrix(source, build_dir, compiler, flags=flags, remarks=remarks)
     commands = {b["name"]: [b["binary"], *program_args] for b in manifest["builds"]}
     results, order = scheduled_benchmarks(commands, **measurement)
-    return {"schema_version": 1, "kind": "comparison", "environment": environment(), "manifest": manifest,
+    explanations = {}
+    if assembly:
+        from .advice import analyze
+        for build in manifest["builds"]:
+            explanations[build["name"]] = analyze(build["binary"], measurement.get("native", "corelens-native"), objdump)
+        baseline_count = sum(f["instruction_count"] for f in explanations["O0"]["functions"])
+        for explanation in explanations.values():
+            count = sum(f["instruction_count"] for f in explanation["functions"])
+            explanation["total_instruction_sites"] = count
+            explanation["instruction_site_delta_from_O0"] = count - baseline_count
+            explanation["scope"] = "Whole binary static instruction sites, including runtime code; not executed instruction counts."
+    return {"schema_version": 1, "kind": "comparison", "assembly": explanations, "environment": environment(), "manifest": manifest,
             "baseline": "O0", "variants": results, "trial_order": order,
             "comparisons": {name: comparison(results["O0"], result) for name, result in results.items() if name != "O0"}}
