@@ -2,6 +2,7 @@
 import argparse
 import json
 import sys
+import subprocess
 from pathlib import Path
 
 
@@ -103,6 +104,6 @@ def main(argv=None):
         else:
             print(content, end="")
         return 0
-    except (ValueError, RuntimeError, OSError) as error:
+    except (ValueError, RuntimeError, OSError, subprocess.SubprocessError) as error:
         print(f"corelens: {error}", file=sys.stderr)
         return 2

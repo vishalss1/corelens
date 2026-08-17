@@ -28,7 +28,7 @@ def measure(command, native="corelens-native", timeout=30, perf=False, cpu=None)
         raise RuntimeError("workload output exceeded capture limit; cannot check correctness")
     if perf and result["counter_error"]:
         raise RuntimeError(result["counter_error"] + ": " + result["stderr"])
-    result["output_sha256"] = hashlib.sha256(result.pop("stdout").encode("utf-8")).hexdigest()
+    result["output_sha256"] = hashlib.sha256(result.pop("stdout").encode("latin-1")).hexdigest()
     return result
 
 
