@@ -40,7 +40,8 @@ ProcessResult run_process(const std::vector<std::string>& args, double timeout) 
         for (int fd : {outpipe[0], outpipe[1], errpipe[0], errpipe[1]}) close(fd);
         execvp(argv[0], argv.data());
         const char message[] = "CoreLens: executable could not be started\n";
-        write(STDERR_FILENO, message, sizeof(message) - 1);
+        auto ignored = write(STDERR_FILENO, message, sizeof(message) - 1);
+        (void)ignored;
         _exit(127);
     }
     setpgid(pid, pid);
@@ -134,22 +135,27 @@ ProcessResult run_process(const std::vector<std::string>& args, double timeout) 
     CloseHandle(out_write); out_write = nullptr; CloseHandle(err_write); err_write = nullptr;
     ProcessResult result;
     for (;;) {
+        bool progress = false;
         for (HANDLE h : {out_read, err_read}) {
             for (int batch = 0; batch < 32; ++batch) {
                 DWORD available = 0, count = 0;
                 if (!PeekNamedPipe(h, nullptr, 0, nullptr, &available, nullptr) || !available) break;
                 char buffer[8192];
                 if (!ReadFile(h, buffer, available < sizeof(buffer) ? available : sizeof(buffer), &count, nullptr)) break;
+                progress = true;
                 append_output(h == out_read ? result.out : result.err, buffer, count, result);
             }
         }
-        if (WaitForSingleObject(process.hProcess, 1) == WAIT_OBJECT_0) break;
+        if (WaitForSingleObject(process.hProcess, 0) == WAIT_OBJECT_0) break;
         if (std::chrono::duration<double>(std::chrono::steady_clock::now() - start).count() >= timeout) {
             result.timed_out = true; TerminateJobObject(job, 124); WaitForSingleObject(process.hProcess, INFINITE); break;
         }
+        if (!progress) std::this_thread::sleep_for(std::chrono::milliseconds(1));
     }
     result.elapsed_seconds = std::chrono::duration<double>(std::chrono::steady_clock::now() - start).count();
     DWORD exit_code; GetExitCodeProcess(process.hProcess, &exit_code); result.exit_code = static_cast<int>(exit_code);
+    // Stop descendants before draining inherited pipes.
+    TerminateJobObject(job, 0);
     // Drain output written just before exit.
     for (HANDLE h : {out_read, err_read}) {
         DWORD available = 0, count = 0; char buffer[8192];

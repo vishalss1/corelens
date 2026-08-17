@@ -26,7 +26,7 @@ def render(data, format="html"):
     caveat = ("Runtime includes process startup and output capture. Hardware counters come from separate perf trials. "
               "Intervals describe sampling noise on the supplied workload; exact stdout checks cover only those inputs.")
     if format == "markdown":
-        escape = lambda s: str(s).replace("|", "\|").replace("\n", " ").replace("`", "'")
+        escape = lambda s: str(s).replace("|", r"\|").replace("\n", " ").replace("`", "'")
         lines = ["# CoreLens performance report", "", caveat, "", "| " + " | ".join(headers) + " |",
                  "| " + " | ".join("---" for _ in headers) + " |"]
         lines.extend("| " + " | ".join(escape(v) for v in row) + " |" for row in table)
