@@ -66,7 +66,8 @@ def strip_separator(command):
 def analyze_handler(a):
     from .advice import analyze, advise
     assembly = analyze(a.binary, a.native, a.objdump, a.function)
-    benchmark = json.loads(Path(a.benchmark).read_text(encoding="utf-8")) if a.benchmark else None
+    from .results import load, validate_benchmark
+    benchmark = validate_benchmark(load(a.benchmark)) if a.benchmark else None
     return {**assembly, "advice": advise(assembly, benchmark)}
 
 

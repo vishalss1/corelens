@@ -56,7 +56,8 @@ th{color:#94d3ff}p{line-height:1.6;color:#b5c5d9}pre{overflow:auto;background:#1
 
 
 def export(input_path, output_path, format):
-    data = json.loads(Path(input_path).read_text(encoding="utf-8"))
+    from .results import load, validate_report
+    data = validate_report(load(input_path))
     target = Path(output_path)
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(render(data, format), encoding="utf-8")
