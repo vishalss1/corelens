@@ -1,5 +1,6 @@
 #include "corelens/model.hpp"
 #include <chrono>
+#include <cmath>
 #include <stdexcept>
 #include <thread>
 
@@ -21,7 +22,7 @@ static void append_output(std::string& dest, const char* data, size_t size, Proc
 #include <unistd.h>
 namespace corelens {
 ProcessResult run_process(const std::vector<std::string>& args, double timeout) {
-    if (args.empty() || timeout <= 0) throw std::invalid_argument("command and positive timeout required");
+    if (args.empty() || !std::isfinite(timeout) || timeout <= 0) throw std::invalid_argument("command and positive timeout required");
     std::vector<char*> argv;
     for (const auto& a : args) argv.push_back(const_cast<char*>(a.c_str()));
     argv.push_back(nullptr);
@@ -101,7 +102,7 @@ static std::string quote_windows(const std::string& arg) {
     result.append(slashes * 2, '\\'); result += '"'; return result;
 }
 ProcessResult run_process(const std::vector<std::string>& args, double timeout) {
-    if (args.empty() || timeout <= 0) throw std::invalid_argument("command and positive timeout required");
+    if (args.empty() || !std::isfinite(timeout) || timeout <= 0) throw std::invalid_argument("command and positive timeout required");
     std::string command;
     for (const auto& arg : args) { if (!command.empty()) command += ' '; command += quote_windows(arg); }
     SECURITY_ATTRIBUTES security{sizeof(SECURITY_ATTRIBUTES), nullptr, TRUE};

@@ -6,6 +6,8 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 add_library(corelens_lib
     src/json.cpp src/process.cpp src/perf.cpp src/assembly.cpp)
 target_include_directories(corelens_lib PUBLIC include)
+find_package(Threads REQUIRED)
+target_link_libraries(corelens_lib PUBLIC Threads::Threads)
 if(MSVC)
     target_compile_options(corelens_lib PRIVATE /W4)
 else()
