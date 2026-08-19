@@ -35,6 +35,11 @@ int main(int argc, char** argv) {
         counters["cycles"].value = 0;
         check(!corelens::derive_metrics(counters).at("ipc"), "zero denominator");
         check(corelens::parse_perf("  5 ;; cycles:u ;10;99\n").at("cycles").value == 5, "whitespace and modifiers");
+        auto hybrid = corelens::parse_perf("100;;cpu_core/cycles/;1000;80\n50;;cpu_atom/cycles/;1000;60\n");
+        check(hybrid.at("cycles").value == 150 && hybrid.at("cycles").running_percent == 60, "hybrid aggregation");
+        check(hybrid.at("cpu_core/cycles/").value == 100, "hybrid domain retention");
+        auto partial = corelens::parse_perf("100;;cpu_core/cycles/;1000;80\n<not counted>;;cpu_atom/cycles/;0;0\n");
+        check(!partial.at("cycles").value && partial.at("cycles").status == "partial", "partial hybrid event is unavailable");
         check(corelens::json_string("\"\\\n\t\r") == "\"\\\"\\\\\\n\\t\\r\"", "JSON escapes");
         check(corelens::json_string(std::string(1, char(255))) == "\"\\u00ff\"", "binary output JSON encoding");
         auto functions = corelens::parse_assembly(

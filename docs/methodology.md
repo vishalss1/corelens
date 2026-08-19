@@ -36,6 +36,12 @@ separately scaled events can be noisy. Inspect raw results before interpreting
 small differences. Large miss ratios are prompts for experiments, not causal
 proof of a bottleneck.
 
+On hybrid CPUs, PMU-qualified event entries are retained, and generic totals
+sum domains only when every reported domain has a usable value. The generic
+running percentage is the minimum across domains. An incomplete aggregate is
+nullable with `partial` status; do not add domain entries to generic totals
+again. Aggregated IPC describes all observed CPU domains together.
+
 Counter trials follow the timing trials and never contribute to runtime
 speedups or throughput. Counter differences compare medians of available
 values; partial availability is explicit in each summary. Unsupported,

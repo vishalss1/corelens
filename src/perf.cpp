@@ -19,6 +19,7 @@ static std::optional<double> numeric(const std::string& s) {
 Counters parse_perf(const std::string& data) {
     Counters result;
     for (const char* name : {"cycles", "instructions", "cache-references", "cache-misses", "branches", "branch-misses"}) result[name] = {};
+    std::map<std::string, std::vector<Counter>> domains;
     std::istringstream stream(data); std::string line;
     while (std::getline(stream, line)) {
         if (line.empty() || line[0] == '#') continue;
@@ -27,7 +28,14 @@ Counters parse_perf(const std::string& data) {
         if (fields.size() < 3) continue;
         auto event = fields[2];
         auto modifier = event.find(':'); if (modifier != std::string::npos) event.resize(modifier);
-        if (!result.count(event)) continue;
+        std::string canonical = event;
+        auto first_slash = event.find('/');
+        if (first_slash != std::string::npos) {
+            auto last_slash = event.find('/', first_slash + 1);
+            if (last_slash == std::string::npos) continue;
+            canonical = event.substr(first_slash + 1, last_slash - first_slash - 1);
+        }
+        if (!result.count(canonical)) continue;
         Counter c;
         c.value = numeric(fields[0]);
         if (c.value) c.status = "ok";
@@ -36,6 +44,20 @@ Counters parse_perf(const std::string& data) {
         else c.status = "invalid";
         if (fields.size() >= 5) c.running_percent = numeric(fields[4]);
         result[event] = c;
+        if (canonical != event) domains[canonical].push_back(c);
+    }
+    for (const auto& [event, entries] : domains) {
+        if (result[event].status != "missing") continue;
+        Counter aggregate;
+        aggregate.value = 0;
+        aggregate.status = "ok";
+        for (const auto& entry : entries) {
+            if (!entry.value) { aggregate.value.reset(); aggregate.status = "partial"; }
+            else if (aggregate.value) *aggregate.value += *entry.value;
+            if (entry.running_percent && (!aggregate.running_percent || *entry.running_percent < *aggregate.running_percent))
+                aggregate.running_percent = entry.running_percent;
+        }
+        result[event] = aggregate;
     }
     return result;
 }

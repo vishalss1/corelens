@@ -38,7 +38,7 @@ All JSON documents use `schema_version: 1`. The native profile contains
 are serialized as Latin-1 Unicode code points; Python restores those bytes
 before SHA-256 hashing. Counter entries have nullable `value`, nullable
 `running_percent`, and a status: `ok`, `missing`, `unsupported`, `not_counted`,
-or `invalid`. Missing values never become zero.
+`invalid`, or `partial` for an incomplete hybrid PMU aggregate. Missing values never become zero.
 
 Python benchmark results contain `samples` and `summary`. Comparison and
 experiment documents contain named `variants`, `comparisons`, `trial_order`,
