@@ -4,7 +4,8 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-from corelens.benchmark import scheduled_benchmarks
+from corelens.benchmark import measure, scheduled_benchmarks
+from corelens.results import load, validate_report
 from corelens.compare import counter_deltas
 from corelens.remarks import read_remarks
 from corelens.report import render
@@ -55,6 +56,31 @@ class BenchmarkTests(unittest.TestCase):
     def test_invalid_inputs(self):
         with self.assertRaises(ValueError):
             scheduled_benchmarks({"a": ["a"]}, repeats=1)
+
+
+class InputTests(unittest.TestCase):
+    def test_invalid_schema_and_nonfinite_json(self):
+        with self.assertRaises(ValueError):
+            validate_report({"schema_version": 99})
+        with self.assertRaises(ValueError):
+            validate_report({"schema_version": 1, "variants": {}})
+        with self.assertRaises(ValueError):
+            validate_report({"schema_version": 1, "summary": {}})
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "bad.json"
+            path.write_text('{"value": NaN}')
+            with self.assertRaises(ValueError):
+                load(path)
+
+    def test_stdout_hash_restores_native_bytes(self):
+        import hashlib
+        import subprocess
+        data = {"stdout": "é", "stderr": "", "exit_code": 0, "timed_out": False,
+                "output_truncated": False, "elapsed_seconds": 1, "counter_error": "", "counters": {}, "derived": {}}
+        completed = subprocess.CompletedProcess([], 0, json.dumps(data), "")
+        with patch("corelens.benchmark.subprocess.run", return_value=completed):
+            measured = measure(["program"])
+        self.assertEqual(measured["output_sha256"], hashlib.sha256(bytes([233])).hexdigest())
 
 
 class ArtifactTests(unittest.TestCase):
