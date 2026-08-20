@@ -1,0 +1,1511 @@
+{
+  "schema_version": 1,
+  "kind": "comparison",
+  "environment": {
+    "timestamp_utc": "2026-10-13T16:30:10.000362+00:00",
+    "system": "Windows",
+    "release": "11",
+    "machine": "AMD64",
+    "processor": "AMD64 Family 25 Model 68 Stepping 1, AuthenticAMD",
+    "python": "3.14.5"
+  },
+  "manifest": {
+    "schema_version": 1,
+    "source": "D:\\corelens\\workloads\\arithmetic.cpp",
+    "source_sha256": "d5c87fb711616a34eeac59327f80a3967c3b9acc4bd6878fa3bf38758839740c",
+    "compiler_version": "clang version 22.1.4 (https://github.com/msys2/MINGW-packages 42681e05ad3617c25e48a935a48eddc72a3ac7e2)\nTarget: x86_64-w64-windows-gnu\nThread model: posix\nInstalledDir: C:/msys64/ucrt64/bin",
+    "flags": [],
+    "builds": [
+      {
+        "name": "O0",
+        "binary": "D:\\corelens\\out\\compare\\arithmetic-O0.exe",
+        "command": [
+          "clang++",
+          "-std=c++17",
+          "-O0",
+          "-g",
+          "-fsave-optimization-record",
+          "-foptimization-record-file=D:\\corelens\\out\\compare\\arithmetic-O0.opt.yaml",
+          "D:\\corelens\\workloads\\arithmetic.cpp",
+          "-o",
+          "D:\\corelens\\out\\compare\\arithmetic-O0.exe"
+        ],
+        "diagnostics": "",
+        "sha256": "6e7deec7c2146dca7bc12e07b57c7a7a8823f74882a3b352c8fd46b07d09039e"
+      },
+      {
+        "name": "O2",
+        "binary": "D:\\corelens\\out\\compare\\arithmetic-O2.exe",
+        "command": [
+          "clang++",
+          "-std=c++17",
+          "-O2",
+          "-g",
+          "-fsave-optimization-record",
+          "-foptimization-record-file=D:\\corelens\\out\\compare\\arithmetic-O2.opt.yaml",
+          "D:\\corelens\\workloads\\arithmetic.cpp",
+          "-o",
+          "D:\\corelens\\out\\compare\\arithmetic-O2.exe"
+        ],
+        "diagnostics": "",
+        "sha256": "d528ca71e76c4b88ed7fc600360d5fb7fa74dd0da868c767e81540e69c07aa57"
+      },
+      {
+        "name": "O3",
+        "binary": "D:\\corelens\\out\\compare\\arithmetic-O3.exe",
+        "command": [
+          "clang++",
+          "-std=c++17",
+          "-O3",
+          "-g",
+          "-fsave-optimization-record",
+          "-foptimization-record-file=D:\\corelens\\out\\compare\\arithmetic-O3.opt.yaml",
+          "D:\\corelens\\workloads\\arithmetic.cpp",
+          "-o",
+          "D:\\corelens\\out\\compare\\arithmetic-O3.exe"
+        ],
+        "diagnostics": "",
+        "sha256": "700e053ea8ef64477b188acecfa418ff31e61f47c428df2100ca8369f17ed750"
+      }
+    ]
+  },
+  "baseline": "O0",
+  "variants": {
+    "O0": {
+      "schema_version": 1,
+      "command": [
+        "D:\\corelens\\out\\compare\\arithmetic-O0.exe",
+        "10000000"
+      ],
+      "warmups": 2,
+      "units": 1,
+      "perf": false,
+      "cpu": null,
+      "output_sha256": "c2fd5ab33c96b5b3a8e3057d05bfe3bf62e96aa104f305a5c830beb9e65152ac",
+      "samples": [
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.1196501,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "hardware counters were not requested",
+          "counters": {
+            "branch-misses": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "branches": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cache-misses": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cache-references": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cycles": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "instructions": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            }
+          },
+          "derived": {},
+          "output_sha256": "c2fd5ab33c96b5b3a8e3057d05bfe3bf62e96aa104f305a5c830beb9e65152ac"
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.1109005,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "hardware counters were not requested",
+          "counters": {
+            "branch-misses": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "branches": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cache-misses": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cache-references": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cycles": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "instructions": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            }
+          },
+          "derived": {},
+          "output_sha256": "c2fd5ab33c96b5b3a8e3057d05bfe3bf62e96aa104f305a5c830beb9e65152ac"
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.1124614,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "hardware counters were not requested",
+          "counters": {
+            "branch-misses": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "branches": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cache-misses": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cache-references": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cycles": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "instructions": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            }
+          },
+          "derived": {},
+          "output_sha256": "c2fd5ab33c96b5b3a8e3057d05bfe3bf62e96aa104f305a5c830beb9e65152ac"
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.1111723,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "hardware counters were not requested",
+          "counters": {
+            "branch-misses": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "branches": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cache-misses": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cache-references": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cycles": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "instructions": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            }
+          },
+          "derived": {},
+          "output_sha256": "c2fd5ab33c96b5b3a8e3057d05bfe3bf62e96aa104f305a5c830beb9e65152ac"
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.1093225,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "hardware counters were not requested",
+          "counters": {
+            "branch-misses": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "branches": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cache-misses": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cache-references": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cycles": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "instructions": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            }
+          },
+          "derived": {},
+          "output_sha256": "c2fd5ab33c96b5b3a8e3057d05bfe3bf62e96aa104f305a5c830beb9e65152ac"
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.1106382,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "hardware counters were not requested",
+          "counters": {
+            "branch-misses": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "branches": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cache-misses": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cache-references": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cycles": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "instructions": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            }
+          },
+          "derived": {},
+          "output_sha256": "c2fd5ab33c96b5b3a8e3057d05bfe3bf62e96aa104f305a5c830beb9e65152ac"
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.1125047,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "hardware counters were not requested",
+          "counters": {
+            "branch-misses": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "branches": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cache-misses": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cache-references": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cycles": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "instructions": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            }
+          },
+          "derived": {},
+          "output_sha256": "c2fd5ab33c96b5b3a8e3057d05bfe3bf62e96aa104f305a5c830beb9e65152ac"
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.1123065,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "hardware counters were not requested",
+          "counters": {
+            "branch-misses": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "branches": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cache-misses": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cache-references": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cycles": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "instructions": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            }
+          },
+          "derived": {},
+          "output_sha256": "c2fd5ab33c96b5b3a8e3057d05bfe3bf62e96aa104f305a5c830beb9e65152ac"
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.1097054,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "hardware counters were not requested",
+          "counters": {
+            "branch-misses": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "branches": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cache-misses": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cache-references": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cycles": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "instructions": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            }
+          },
+          "derived": {},
+          "output_sha256": "c2fd5ab33c96b5b3a8e3057d05bfe3bf62e96aa104f305a5c830beb9e65152ac"
+        }
+      ],
+      "summary": {
+        "runtime_seconds": {
+          "count": 9,
+          "median": 0.1111723,
+          "min": 0.1093225,
+          "max": 0.1196501,
+          "mean": 0.11207351111111111,
+          "stdev": 0.0030663421113129403,
+          "relative_mad": 0.01159551435024733
+        },
+        "throughput_per_second": 8.995046427932138,
+        "counters": {
+          "branch-misses": {
+            "available_runs": 0,
+            "total_runs": 9,
+            "values": null,
+            "minimum_running_percent": null
+          },
+          "branches": {
+            "available_runs": 0,
+            "total_runs": 9,
+            "values": null,
+            "minimum_running_percent": null
+          },
+          "cache-misses": {
+            "available_runs": 0,
+            "total_runs": 9,
+            "values": null,
+            "minimum_running_percent": null
+          },
+          "cache-references": {
+            "available_runs": 0,
+            "total_runs": 9,
+            "values": null,
+            "minimum_running_percent": null
+          },
+          "cycles": {
+            "available_runs": 0,
+            "total_runs": 9,
+            "values": null,
+            "minimum_running_percent": null
+          },
+          "instructions": {
+            "available_runs": 0,
+            "total_runs": 9,
+            "values": null,
+            "minimum_running_percent": null
+          }
+        },
+        "derived": {}
+      }
+    },
+    "O2": {
+      "schema_version": 1,
+      "command": [
+        "D:\\corelens\\out\\compare\\arithmetic-O2.exe",
+        "10000000"
+      ],
+      "warmups": 2,
+      "units": 1,
+      "perf": false,
+      "cpu": null,
+      "output_sha256": "c2fd5ab33c96b5b3a8e3057d05bfe3bf62e96aa104f305a5c830beb9e65152ac",
+      "samples": [
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.0778225,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "hardware counters were not requested",
+          "counters": {
+            "branch-misses": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "branches": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cache-misses": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cache-references": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cycles": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "instructions": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            }
+          },
+          "derived": {},
+          "output_sha256": "c2fd5ab33c96b5b3a8e3057d05bfe3bf62e96aa104f305a5c830beb9e65152ac"
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.1422315,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "hardware counters were not requested",
+          "counters": {
+            "branch-misses": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "branches": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cache-misses": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cache-references": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cycles": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "instructions": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            }
+          },
+          "derived": {},
+          "output_sha256": "c2fd5ab33c96b5b3a8e3057d05bfe3bf62e96aa104f305a5c830beb9e65152ac"
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.0781867,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "hardware counters were not requested",
+          "counters": {
+            "branch-misses": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "branches": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cache-misses": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cache-references": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cycles": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "instructions": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            }
+          },
+          "derived": {},
+          "output_sha256": "c2fd5ab33c96b5b3a8e3057d05bfe3bf62e96aa104f305a5c830beb9e65152ac"
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.0795386,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "hardware counters were not requested",
+          "counters": {
+            "branch-misses": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "branches": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cache-misses": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cache-references": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cycles": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "instructions": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            }
+          },
+          "derived": {},
+          "output_sha256": "c2fd5ab33c96b5b3a8e3057d05bfe3bf62e96aa104f305a5c830beb9e65152ac"
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.0781683,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "hardware counters were not requested",
+          "counters": {
+            "branch-misses": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "branches": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cache-misses": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cache-references": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cycles": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "instructions": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            }
+          },
+          "derived": {},
+          "output_sha256": "c2fd5ab33c96b5b3a8e3057d05bfe3bf62e96aa104f305a5c830beb9e65152ac"
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.0804663,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "hardware counters were not requested",
+          "counters": {
+            "branch-misses": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "branches": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cache-misses": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cache-references": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cycles": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "instructions": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            }
+          },
+          "derived": {},
+          "output_sha256": "c2fd5ab33c96b5b3a8e3057d05bfe3bf62e96aa104f305a5c830beb9e65152ac"
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.079878,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "hardware counters were not requested",
+          "counters": {
+            "branch-misses": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "branches": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cache-misses": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cache-references": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cycles": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "instructions": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            }
+          },
+          "derived": {},
+          "output_sha256": "c2fd5ab33c96b5b3a8e3057d05bfe3bf62e96aa104f305a5c830beb9e65152ac"
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.0902071,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "hardware counters were not requested",
+          "counters": {
+            "branch-misses": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "branches": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cache-misses": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cache-references": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cycles": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "instructions": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            }
+          },
+          "derived": {},
+          "output_sha256": "c2fd5ab33c96b5b3a8e3057d05bfe3bf62e96aa104f305a5c830beb9e65152ac"
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.0782314,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "hardware counters were not requested",
+          "counters": {
+            "branch-misses": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "branches": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cache-misses": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cache-references": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cycles": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "instructions": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            }
+          },
+          "derived": {},
+          "output_sha256": "c2fd5ab33c96b5b3a8e3057d05bfe3bf62e96aa104f305a5c830beb9e65152ac"
+        }
+      ],
+      "summary": {
+        "runtime_seconds": {
+          "count": 9,
+          "median": 0.0795386,
+          "min": 0.0778225,
+          "max": 0.1422315,
+          "mean": 0.08719226666666667,
+          "stdev": 0.0209950709336144,
+          "relative_mad": 0.016996778922435184
+        },
+        "throughput_per_second": 12.572511962745132,
+        "counters": {
+          "branch-misses": {
+            "available_runs": 0,
+            "total_runs": 9,
+            "values": null,
+            "minimum_running_percent": null
+          },
+          "branches": {
+            "available_runs": 0,
+            "total_runs": 9,
+            "values": null,
+            "minimum_running_percent": null
+          },
+          "cache-misses": {
+            "available_runs": 0,
+            "total_runs": 9,
+            "values": null,
+            "minimum_running_percent": null
+          },
+          "cache-references": {
+            "available_runs": 0,
+            "total_runs": 9,
+            "values": null,
+            "minimum_running_percent": null
+          },
+          "cycles": {
+            "available_runs": 0,
+            "total_runs": 9,
+            "values": null,
+            "minimum_running_percent": null
+          },
+          "instructions": {
+            "available_runs": 0,
+            "total_runs": 9,
+            "values": null,
+            "minimum_running_percent": null
+          }
+        },
+        "derived": {}
+      }
+    },
+    "O3": {
+      "schema_version": 1,
+      "command": [
+        "D:\\corelens\\out\\compare\\arithmetic-O3.exe",
+        "10000000"
+      ],
+      "warmups": 2,
+      "units": 1,
+      "perf": false,
+      "cpu": null,
+      "output_sha256": "c2fd5ab33c96b5b3a8e3057d05bfe3bf62e96aa104f305a5c830beb9e65152ac",
+      "samples": [
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.0788077,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "hardware counters were not requested",
+          "counters": {
+            "branch-misses": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "branches": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cache-misses": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cache-references": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cycles": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "instructions": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            }
+          },
+          "derived": {},
+          "output_sha256": "c2fd5ab33c96b5b3a8e3057d05bfe3bf62e96aa104f305a5c830beb9e65152ac"
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.076888,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "hardware counters were not requested",
+          "counters": {
+            "branch-misses": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "branches": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cache-misses": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cache-references": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cycles": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "instructions": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            }
+          },
+          "derived": {},
+          "output_sha256": "c2fd5ab33c96b5b3a8e3057d05bfe3bf62e96aa104f305a5c830beb9e65152ac"
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.0942175,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "hardware counters were not requested",
+          "counters": {
+            "branch-misses": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "branches": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cache-misses": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cache-references": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cycles": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "instructions": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            }
+          },
+          "derived": {},
+          "output_sha256": "c2fd5ab33c96b5b3a8e3057d05bfe3bf62e96aa104f305a5c830beb9e65152ac"
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.0796876,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "hardware counters were not requested",
+          "counters": {
+            "branch-misses": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "branches": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cache-misses": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cache-references": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cycles": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "instructions": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            }
+          },
+          "derived": {},
+          "output_sha256": "c2fd5ab33c96b5b3a8e3057d05bfe3bf62e96aa104f305a5c830beb9e65152ac"
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.0805932,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "hardware counters were not requested",
+          "counters": {
+            "branch-misses": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "branches": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cache-misses": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cache-references": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cycles": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "instructions": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            }
+          },
+          "derived": {},
+          "output_sha256": "c2fd5ab33c96b5b3a8e3057d05bfe3bf62e96aa104f305a5c830beb9e65152ac"
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.0789545,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "hardware counters were not requested",
+          "counters": {
+            "branch-misses": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "branches": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cache-misses": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cache-references": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cycles": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "instructions": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            }
+          },
+          "derived": {},
+          "output_sha256": "c2fd5ab33c96b5b3a8e3057d05bfe3bf62e96aa104f305a5c830beb9e65152ac"
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.0938749,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "hardware counters were not requested",
+          "counters": {
+            "branch-misses": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "branches": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cache-misses": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cache-references": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cycles": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "instructions": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            }
+          },
+          "derived": {},
+          "output_sha256": "c2fd5ab33c96b5b3a8e3057d05bfe3bf62e96aa104f305a5c830beb9e65152ac"
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.080268,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "hardware counters were not requested",
+          "counters": {
+            "branch-misses": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "branches": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cache-misses": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cache-references": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cycles": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "instructions": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            }
+          },
+          "derived": {},
+          "output_sha256": "c2fd5ab33c96b5b3a8e3057d05bfe3bf62e96aa104f305a5c830beb9e65152ac"
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.0790837,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "hardware counters were not requested",
+          "counters": {
+            "branch-misses": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "branches": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cache-misses": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cache-references": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "cycles": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            },
+            "instructions": {
+              "value": null,
+              "status": "missing",
+              "running_percent": null
+            }
+          },
+          "derived": {},
+          "output_sha256": "c2fd5ab33c96b5b3a8e3057d05bfe3bf62e96aa104f305a5c830beb9e65152ac"
+        }
+      ],
+      "summary": {
+        "runtime_seconds": {
+          "count": 9,
+          "median": 0.0796876,
+          "min": 0.076888,
+          "max": 0.0942175,
+          "mean": 0.08248612222222222,
+          "stdev": 0.006638740714129784,
+          "relative_mad": 0.011041868496478787
+        },
+        "throughput_per_second": 12.549003860073588,
+        "counters": {
+          "branch-misses": {
+            "available_runs": 0,
+            "total_runs": 9,
+            "values": null,
+            "minimum_running_percent": null
+          },
+          "branches": {
+            "available_runs": 0,
+            "total_runs": 9,
+            "values": null,
+            "minimum_running_percent": null
+          },
+          "cache-misses": {
+            "available_runs": 0,
+            "total_runs": 9,
+            "values": null,
+            "minimum_running_percent": null
+          },
+          "cache-references": {
+            "available_runs": 0,
+            "total_runs": 9,
+            "values": null,
+            "minimum_running_percent": null
+          },
+          "cycles": {
+            "available_runs": 0,
+            "total_runs": 9,
+            "values": null,
+            "minimum_running_percent": null
+          },
+          "instructions": {
+            "available_runs": 0,
+            "total_runs": 9,
+            "values": null,
+            "minimum_running_percent": null
+          }
+        },
+        "derived": {}
+      }
+    }
+  },
+  "trial_order": [
+    [
+      "O0",
+      "O2",
+      "O3"
+    ],
+    [
+      "O2",
+      "O0",
+      "O3"
+    ],
+    [
+      "O0",
+      "O3",
+      "O2"
+    ],
+    [
+      "O3",
+      "O0",
+      "O2"
+    ],
+    [
+      "O2",
+      "O0",
+      "O3"
+    ],
+    [
+      "O2",
+      "O3",
+      "O0"
+    ],
+    [
+      "O2",
+      "O0",
+      "O3"
+    ],
+    [
+      "O2",
+      "O0",
+      "O3"
+    ],
+    [
+      "O2",
+      "O0",
+      "O3"
+    ]
+  ],
+  "comparisons": {
+    "O2": {
+      "speedup": 1.3985528660595152,
+      "ci95": [
+        1.3749631833450773,
+        1.4383699529459615
+      ],
+      "paired": true,
+      "verdict": "improved",
+      "counter_deltas": {},
+      "output_matches": true
+    },
+    "O3": {
+      "speedup": 1.395101621833259,
+      "ci95": [
+        1.1984534737187469,
+        1.4423642180834462
+      ],
+      "paired": true,
+      "verdict": "improved",
+      "counter_deltas": {},
+      "output_matches": true
+    }
+  },
+  "evidence_snapshot": {
+    "original_artifact": "out/comparison.json",
+    "original_artifact_sha256": "7b640d8a1f6cad6b46dadcc46783ff56292ba2cce8e26c484519009f66ed165e",
+    "omitted_fields": [
+      "assembly",
+      "builds[].optimization_remarks"
+    ],
+    "note": "Measured samples, summaries, comparisons, environment, and build provenance are preserved. Bulky assembly and LLVM remark payloads are omitted."
+  }
+}

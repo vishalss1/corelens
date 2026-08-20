@@ -1,0 +1,1957 @@
+{
+  "schema_version": 1,
+  "kind": "comparison",
+  "environment": {
+    "timestamp_utc": "2026-10-14T02:46:42.455105+00:00",
+    "system": "Linux",
+    "release": "6.18.33.2-microsoft-standard-WSL2",
+    "machine": "x86_64",
+    "processor": "",
+    "python": "3.14.4",
+    "cpuinfo": "AMD Ryzen 7 6800HS with Radeon Graphics",
+    "governor_cpu0": null,
+    "perf_event_paranoid": "2",
+    "allowed_cpus": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ]
+  },
+  "manifest": {
+    "schema_version": 1,
+    "source": "/mnt/d/corelens/workloads/arithmetic.cpp",
+    "source_sha256": "d5c87fb711616a34eeac59327f80a3967c3b9acc4bd6878fa3bf38758839740c",
+    "compiler_version": "Ubuntu clang version 21.1.8 (6ubuntu1)\nTarget: x86_64-pc-linux-gnu\nThread model: posix\nInstalledDir: /usr/lib/llvm-21/bin",
+    "flags": [],
+    "builds": [
+      {
+        "name": "O0",
+        "binary": "/mnt/d/corelens/out/compare/arithmetic-O0",
+        "command": [
+          "clang++",
+          "-std=c++17",
+          "-O0",
+          "-g",
+          "-fsave-optimization-record",
+          "-foptimization-record-file=/mnt/d/corelens/out/compare/arithmetic-O0.opt.yaml",
+          "/mnt/d/corelens/workloads/arithmetic.cpp",
+          "-o",
+          "/mnt/d/corelens/out/compare/arithmetic-O0"
+        ],
+        "diagnostics": "",
+        "sha256": "e59690934c1278d76cba1072188940d232e570c9f6bb858f36b8303030cbfd0c"
+      },
+      {
+        "name": "O2",
+        "binary": "/mnt/d/corelens/out/compare/arithmetic-O2",
+        "command": [
+          "clang++",
+          "-std=c++17",
+          "-O2",
+          "-g",
+          "-fsave-optimization-record",
+          "-foptimization-record-file=/mnt/d/corelens/out/compare/arithmetic-O2.opt.yaml",
+          "/mnt/d/corelens/workloads/arithmetic.cpp",
+          "-o",
+          "/mnt/d/corelens/out/compare/arithmetic-O2"
+        ],
+        "diagnostics": "",
+        "sha256": "bc8fa3c20e22f806bbdc3cdfd1e149527a215eefa4b2110faf919ac50d360099"
+      },
+      {
+        "name": "O3",
+        "binary": "/mnt/d/corelens/out/compare/arithmetic-O3",
+        "command": [
+          "clang++",
+          "-std=c++17",
+          "-O3",
+          "-g",
+          "-fsave-optimization-record",
+          "-foptimization-record-file=/mnt/d/corelens/out/compare/arithmetic-O3.opt.yaml",
+          "/mnt/d/corelens/workloads/arithmetic.cpp",
+          "-o",
+          "/mnt/d/corelens/out/compare/arithmetic-O3"
+        ],
+        "diagnostics": "",
+        "sha256": "b2c9a632f252f020aa3c658ea3010378bab23f12a81e6952d19affbbc5200574"
+      }
+    ]
+  },
+  "baseline": "O0",
+  "variants": {
+    "O0": {
+      "schema_version": 1,
+      "command": [
+        "/mnt/d/corelens/out/compare/arithmetic-O0",
+        "10000000"
+      ],
+      "warmups": 2,
+      "units": 10000000.0,
+      "perf": true,
+      "cpu": null,
+      "output_sha256": "ef047ddb8e6ab0b08da652ce1cf143c0cf1b65a2e9dc581a9cab88965863c0a7",
+      "samples": [
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.053460319,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "",
+          "counters": {
+            "branch-misses": {
+              "value": 55583,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "branches": {
+              "value": 20641871,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-misses": {
+              "value": 81413,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-references": {
+              "value": 247702,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cycles": {
+              "value": 154773715,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "instructions": {
+              "value": 213208704,
+              "status": "ok",
+              "running_percent": 100
+            }
+          },
+          "derived": {
+            "branch_miss_ratio": 0.002692730712249873,
+            "cache_miss_ratio": 0.3286731637209227,
+            "ipc": 1.3775511171260573
+          },
+          "output_sha256": "ef047ddb8e6ab0b08da652ce1cf143c0cf1b65a2e9dc581a9cab88965863c0a7",
+          "counter_elapsed_seconds": 0.075364189
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.05336054,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "",
+          "counters": {
+            "branch-misses": {
+              "value": 53957,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "branches": {
+              "value": 20637229,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-misses": {
+              "value": 70897,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-references": {
+              "value": 237142,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cycles": {
+              "value": 154260672,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "instructions": {
+              "value": 213184786,
+              "status": "ok",
+              "running_percent": 100
+            }
+          },
+          "derived": {
+            "branch_miss_ratio": 0.002614546749469127,
+            "cache_miss_ratio": 0.2989643336060251,
+            "ipc": 1.3819775529047351
+          },
+          "output_sha256": "ef047ddb8e6ab0b08da652ce1cf143c0cf1b65a2e9dc581a9cab88965863c0a7",
+          "counter_elapsed_seconds": 0.077080229
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.05362359,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "",
+          "counters": {
+            "branch-misses": {
+              "value": 55733,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "branches": {
+              "value": 20640302,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-misses": {
+              "value": 86155,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-references": {
+              "value": 258555,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cycles": {
+              "value": 156044408,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "instructions": {
+              "value": 213201836,
+              "status": "ok",
+              "running_percent": 100
+            }
+          },
+          "derived": {
+            "branch_miss_ratio": 0.0027002027392816247,
+            "cache_miss_ratio": 0.33321730386184756,
+            "ipc": 1.366289498820105
+          },
+          "output_sha256": "ef047ddb8e6ab0b08da652ce1cf143c0cf1b65a2e9dc581a9cab88965863c0a7",
+          "counter_elapsed_seconds": 0.079238772
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.052959227,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "",
+          "counters": {
+            "branch-misses": {
+              "value": 55624,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "branches": {
+              "value": 20646319,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-misses": {
+              "value": 81948,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-references": {
+              "value": 248646,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cycles": {
+              "value": 154353750,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "instructions": {
+              "value": 213221508,
+              "status": "ok",
+              "running_percent": 100
+            }
+          },
+          "derived": {
+            "branch_miss_ratio": 0.0026941364220905433,
+            "cache_miss_ratio": 0.32957698897227383,
+            "ipc": 1.3813821044192318
+          },
+          "output_sha256": "ef047ddb8e6ab0b08da652ce1cf143c0cf1b65a2e9dc581a9cab88965863c0a7",
+          "counter_elapsed_seconds": 0.073276832
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.053420714,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "",
+          "counters": {
+            "branch-misses": {
+              "value": 53535,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "branches": {
+              "value": 20635787,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-misses": {
+              "value": 72980,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-references": {
+              "value": 234705,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cycles": {
+              "value": 154027155,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "instructions": {
+              "value": 213177990,
+              "status": "ok",
+              "running_percent": 100
+            }
+          },
+          "derived": {
+            "branch_miss_ratio": 0.0025942795397141867,
+            "cache_miss_ratio": 0.31094352485034404,
+            "ipc": 1.3840286149542917
+          },
+          "output_sha256": "ef047ddb8e6ab0b08da652ce1cf143c0cf1b65a2e9dc581a9cab88965863c0a7",
+          "counter_elapsed_seconds": 0.072546135
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.058032437,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "",
+          "counters": {
+            "branch-misses": {
+              "value": 55891,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "branches": {
+              "value": 20649212,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-misses": {
+              "value": 76218,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-references": {
+              "value": 245144,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cycles": {
+              "value": 154040777,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "instructions": {
+              "value": 213235900,
+              "status": "ok",
+              "running_percent": 100
+            }
+          },
+          "derived": {
+            "branch_miss_ratio": 0.0027066892431536855,
+            "cache_miss_ratio": 0.31091113794341285,
+            "ipc": 1.3842821631573567
+          },
+          "output_sha256": "ef047ddb8e6ab0b08da652ce1cf143c0cf1b65a2e9dc581a9cab88965863c0a7",
+          "counter_elapsed_seconds": 0.072640885
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.053699214,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "",
+          "counters": {
+            "branch-misses": {
+              "value": 54232,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "branches": {
+              "value": 20635879,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-misses": {
+              "value": 79996,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-references": {
+              "value": 247005,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cycles": {
+              "value": 154531049,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "instructions": {
+              "value": 213177705,
+              "status": "ok",
+              "running_percent": 100
+            }
+          },
+          "derived": {
+            "branch_miss_ratio": 0.00262804409737041,
+            "cache_miss_ratio": 0.32386388939495153,
+            "ipc": 1.3795137377214077
+          },
+          "output_sha256": "ef047ddb8e6ab0b08da652ce1cf143c0cf1b65a2e9dc581a9cab88965863c0a7",
+          "counter_elapsed_seconds": 0.074245003
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.05254981,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "",
+          "counters": {
+            "branch-misses": {
+              "value": 54263,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "branches": {
+              "value": 20639117,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-misses": {
+              "value": 73902,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-references": {
+              "value": 241607,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cycles": {
+              "value": 155321763,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "instructions": {
+              "value": 213195198,
+              "status": "ok",
+              "running_percent": 100
+            }
+          },
+          "derived": {
+            "branch_miss_ratio": 0.0026291337948227147,
+            "cache_miss_ratio": 0.3058768992620247,
+            "ipc": 1.3726035159670444
+          },
+          "output_sha256": "ef047ddb8e6ab0b08da652ce1cf143c0cf1b65a2e9dc581a9cab88965863c0a7",
+          "counter_elapsed_seconds": 0.076973918
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.053748998,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "",
+          "counters": {
+            "branch-misses": {
+              "value": 54741,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "branches": {
+              "value": 20641870,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-misses": {
+              "value": 74938,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-references": {
+              "value": 237861,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cycles": {
+              "value": 154208762,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "instructions": {
+              "value": 213204668,
+              "status": "ok",
+              "running_percent": 100
+            }
+          },
+          "derived": {
+            "branch_miss_ratio": 0.0026519399647415664,
+            "cache_miss_ratio": 0.31504954574310207,
+            "ipc": 1.382571685518103
+          },
+          "output_sha256": "ef047ddb8e6ab0b08da652ce1cf143c0cf1b65a2e9dc581a9cab88965863c0a7",
+          "counter_elapsed_seconds": 0.072952125
+        }
+      ],
+      "summary": {
+        "runtime_seconds": {
+          "count": 9,
+          "median": 0.053460319,
+          "min": 0.05254981,
+          "max": 0.058032437,
+          "mean": 0.053872761,
+          "stdev": 0.00160592634550771,
+          "relative_mad": 0.00446864149837944
+        },
+        "throughput_per_second": 187054626.44171652,
+        "counters": {
+          "branch-misses": {
+            "available_runs": 9,
+            "total_runs": 9,
+            "values": {
+              "count": 9,
+              "median": 54741,
+              "min": 53535,
+              "max": 55891,
+              "mean": 54839.88888888889,
+              "stdev": 884.8631877929554,
+              "relative_mad": 0.015381523903472716
+            },
+            "minimum_running_percent": 100
+          },
+          "branches": {
+            "available_runs": 9,
+            "total_runs": 9,
+            "values": {
+              "count": 9,
+              "median": 20640302,
+              "min": 20635787,
+              "max": 20649212,
+              "mean": 20640842.888888888,
+              "stdev": 4591.778452964723,
+              "relative_mad": 0.00014888348048395803
+            },
+            "minimum_running_percent": 100
+          },
+          "cache-misses": {
+            "available_runs": 9,
+            "total_runs": 9,
+            "values": {
+              "count": 9,
+              "median": 76218,
+              "min": 70897,
+              "max": 86155,
+              "mean": 77605.22222222222,
+              "stdev": 5016.45603932143,
+              "relative_mad": 0.04956834343593377
+            },
+            "minimum_running_percent": 100
+          },
+          "cache-references": {
+            "available_runs": 9,
+            "total_runs": 9,
+            "values": {
+              "count": 9,
+              "median": 245144,
+              "min": 234705,
+              "max": 258555,
+              "mean": 244263,
+              "stdev": 7362.8912799252985,
+              "relative_mad": 0.014428254413732336
+            },
+            "minimum_running_percent": 100
+          },
+          "cycles": {
+            "available_runs": 9,
+            "total_runs": 9,
+            "values": {
+              "count": 9,
+              "median": 154353750,
+              "min": 154027155,
+              "max": 156044408,
+              "mean": 154618005.66666666,
+              "stdev": 671658.4966011373,
+              "relative_mad": 0.002027634573180114
+            },
+            "minimum_running_percent": 100
+          },
+          "instructions": {
+            "available_runs": 9,
+            "total_runs": 9,
+            "values": {
+              "count": 9,
+              "median": 213201836,
+              "min": 213177705,
+              "max": 213235900,
+              "mean": 213200921.66666666,
+              "stdev": 19623.68371381887,
+              "relative_mad": 7.99711687285845e-05
+            },
+            "minimum_running_percent": 100
+          }
+        },
+        "derived": {
+          "branch_miss_ratio": {
+            "count": 9,
+            "median": 0.0026519399647415664,
+            "min": 0.0025942795397141867,
+            "max": 0.0027066892431536855,
+            "mean": 0.0026568559180993037,
+            "stdev": 4.237896978136707e-05,
+            "relative_mad": 0.015381474713090584
+          },
+          "cache_miss_ratio": {
+            "count": 9,
+            "median": 0.31504954574310207,
+            "min": 0.2989643336060251,
+            "max": 0.33321730386184756,
+            "mean": 0.31745297637276715,
+            "stdev": 0.011881070412540278,
+            "relative_mad": 0.029114933206591313
+          },
+          "ipc": {
+            "count": 9,
+            "median": 1.3813821044192318,
+            "min": 1.366289498820105,
+            "max": 1.3842821631573567,
+            "mean": 1.3789111100653704,
+            "stdev": 0.005971278335255893,
+            "relative_mad": 0.0019158424932488843
+          }
+        }
+      }
+    },
+    "O2": {
+      "schema_version": 1,
+      "command": [
+        "/mnt/d/corelens/out/compare/arithmetic-O2",
+        "10000000"
+      ],
+      "warmups": 2,
+      "units": 10000000.0,
+      "perf": true,
+      "cpu": null,
+      "output_sha256": "ef047ddb8e6ab0b08da652ce1cf143c0cf1b65a2e9dc581a9cab88965863c0a7",
+      "samples": [
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.028576729,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "",
+          "counters": {
+            "branch-misses": {
+              "value": 51947,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "branches": {
+              "value": 5627791,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-misses": {
+              "value": 65723,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-references": {
+              "value": 225671,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cycles": {
+              "value": 75826180,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "instructions": {
+              "value": 348143153,
+              "status": "ok",
+              "running_percent": 100
+            }
+          },
+          "derived": {
+            "branch_miss_ratio": 0.009230442281882892,
+            "cache_miss_ratio": 0.29123369861435455,
+            "ipc": 4.591331819696047
+          },
+          "output_sha256": "ef047ddb8e6ab0b08da652ce1cf143c0cf1b65a2e9dc581a9cab88965863c0a7",
+          "counter_elapsed_seconds": 0.190962456
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.028775457,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "",
+          "counters": {
+            "branch-misses": {
+              "value": 51695,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "branches": {
+              "value": 5621493,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-misses": {
+              "value": 71040,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-references": {
+              "value": 229589,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cycles": {
+              "value": 76911877,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "instructions": {
+              "value": 348117916,
+              "status": "ok",
+              "running_percent": 100
+            }
+          },
+          "derived": {
+            "branch_miss_ratio": 0.00919595559400323,
+            "cache_miss_ratio": 0.30942248975342895,
+            "ipc": 4.526191917016925
+          },
+          "output_sha256": "ef047ddb8e6ab0b08da652ce1cf143c0cf1b65a2e9dc581a9cab88965863c0a7",
+          "counter_elapsed_seconds": 0.048142576
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.028474685,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "",
+          "counters": {
+            "branch-misses": {
+              "value": 54871,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "branches": {
+              "value": 5638398,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-misses": {
+              "value": 79803,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-references": {
+              "value": 241722,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cycles": {
+              "value": 82935920,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "instructions": {
+              "value": 348191957,
+              "status": "ok",
+              "running_percent": 100
+            }
+          },
+          "derived": {
+            "branch_miss_ratio": 0.00973166491616945,
+            "cache_miss_ratio": 0.33014371881748455,
+            "ipc": 4.198325128605314
+          },
+          "output_sha256": "ef047ddb8e6ab0b08da652ce1cf143c0cf1b65a2e9dc581a9cab88965863c0a7",
+          "counter_elapsed_seconds": 0.054204233
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.02752967,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "",
+          "counters": {
+            "branch-misses": {
+              "value": 54336,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "branches": {
+              "value": 5636872,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-misses": {
+              "value": 74936,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-references": {
+              "value": 238864,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cycles": {
+              "value": 76059080,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "instructions": {
+              "value": 348181399,
+              "status": "ok",
+              "running_percent": 100
+            }
+          },
+          "derived": {
+            "branch_miss_ratio": 0.009639388653849156,
+            "cache_miss_ratio": 0.3137182664612499,
+            "ipc": 4.57777557919449
+          },
+          "output_sha256": "ef047ddb8e6ab0b08da652ce1cf143c0cf1b65a2e9dc581a9cab88965863c0a7",
+          "counter_elapsed_seconds": 0.049325153
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.028288621,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "",
+          "counters": {
+            "branch-misses": {
+              "value": 51987,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "branches": {
+              "value": 5626719,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-misses": {
+              "value": 67545,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-references": {
+              "value": 225541,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cycles": {
+              "value": 75619706,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "instructions": {
+              "value": 348140712,
+              "status": "ok",
+              "running_percent": 100
+            }
+          },
+          "derived": {
+            "branch_miss_ratio": 0.009239309800258375,
+            "cache_miss_ratio": 0.2994799171769213,
+            "ipc": 4.603835830834888
+          },
+          "output_sha256": "ef047ddb8e6ab0b08da652ce1cf143c0cf1b65a2e9dc581a9cab88965863c0a7",
+          "counter_elapsed_seconds": 0.049121264
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.033580415,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "",
+          "counters": {
+            "branch-misses": {
+              "value": 51727,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "branches": {
+              "value": 5619214,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-misses": {
+              "value": 70976,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-references": {
+              "value": 230613,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cycles": {
+              "value": 75843385,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "instructions": {
+              "value": 348107224,
+              "status": "ok",
+              "running_percent": 100
+            }
+          },
+          "derived": {
+            "branch_miss_ratio": 0.00920537996951175,
+            "cache_miss_ratio": 0.30777102765238734,
+            "ipc": 4.589816554205749
+          },
+          "output_sha256": "ef047ddb8e6ab0b08da652ce1cf143c0cf1b65a2e9dc581a9cab88965863c0a7",
+          "counter_elapsed_seconds": 0.047140782
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.028640599,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "",
+          "counters": {
+            "branch-misses": {
+              "value": 51470,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "branches": {
+              "value": 5622874,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-misses": {
+              "value": 69430,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-references": {
+              "value": 228294,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cycles": {
+              "value": 75784898,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "instructions": {
+              "value": 348121197,
+              "status": "ok",
+              "running_percent": 100
+            }
+          },
+          "derived": {
+            "branch_miss_ratio": 0.009153681907152818,
+            "cache_miss_ratio": 0.30412538218262414,
+            "ipc": 4.5935431225361025
+          },
+          "output_sha256": "ef047ddb8e6ab0b08da652ce1cf143c0cf1b65a2e9dc581a9cab88965863c0a7",
+          "counter_elapsed_seconds": 0.046774246
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.028269374,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "",
+          "counters": {
+            "branch-misses": {
+              "value": 52094,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "branches": {
+              "value": 5631625,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-misses": {
+              "value": 67276,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-references": {
+              "value": 224577,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cycles": {
+              "value": 75562508,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "instructions": {
+              "value": 348158643,
+              "status": "ok",
+              "running_percent": 100
+            }
+          },
+          "derived": {
+            "branch_miss_ratio": 0.009250260803942024,
+            "cache_miss_ratio": 0.2995676315918371,
+            "ipc": 4.607558063054233
+          },
+          "output_sha256": "ef047ddb8e6ab0b08da652ce1cf143c0cf1b65a2e9dc581a9cab88965863c0a7",
+          "counter_elapsed_seconds": 0.047674676
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.028332174,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "",
+          "counters": {
+            "branch-misses": {
+              "value": 51959,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "branches": {
+              "value": 5630583,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-misses": {
+              "value": 69352,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-references": {
+              "value": 225034,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cycles": {
+              "value": 75298077,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "instructions": {
+              "value": 348155520,
+              "status": "ok",
+              "running_percent": 100
+            }
+          },
+          "derived": {
+            "branch_miss_ratio": 0.009227996461467667,
+            "cache_miss_ratio": 0.30818454100269294,
+            "ipc": 4.623697362151758
+          },
+          "output_sha256": "ef047ddb8e6ab0b08da652ce1cf143c0cf1b65a2e9dc581a9cab88965863c0a7",
+          "counter_elapsed_seconds": 0.048910865
+        }
+      ],
+      "summary": {
+        "runtime_seconds": {
+          "count": 9,
+          "median": 0.028474685,
+          "min": 0.02752967,
+          "max": 0.033580415,
+          "mean": 0.028940858222222223,
+          "stdev": 0.001775920921603971,
+          "relative_mad": 0.006534365525026868
+        },
+        "throughput_per_second": 351189135.1914868,
+        "counters": {
+          "branch-misses": {
+            "available_runs": 9,
+            "total_runs": 9,
+            "values": {
+              "count": 9,
+              "median": 51959,
+              "min": 51470,
+              "max": 54871,
+              "mean": 52454,
+              "stdev": 1240.2843423989516,
+              "relative_mad": 0.0044650589888181064
+            },
+            "minimum_running_percent": 100
+          },
+          "branches": {
+            "available_runs": 9,
+            "total_runs": 9,
+            "values": {
+              "count": 9,
+              "median": 5627791,
+              "min": 5619214,
+              "max": 5638398,
+              "mean": 5628396.555555556,
+              "stdev": 6640.061729967409,
+              "relative_mad": 0.0008736998228967636
+            },
+            "minimum_running_percent": 100
+          },
+          "cache-misses": {
+            "available_runs": 9,
+            "total_runs": 9,
+            "values": {
+              "count": 9,
+              "median": 69430,
+              "min": 65723,
+              "max": 79803,
+              "mean": 70675.66666666667,
+              "stdev": 4342.710645437939,
+              "relative_mad": 0.027149647126602332
+            },
+            "minimum_running_percent": 100
+          },
+          "cache-references": {
+            "available_runs": 9,
+            "total_runs": 9,
+            "values": {
+              "count": 9,
+              "median": 228294,
+              "min": 224577,
+              "max": 241722,
+              "mean": 229989.44444444444,
+              "stdev": 6246.227963961753,
+              "relative_mad": 0.01205901162536028
+            },
+            "minimum_running_percent": 100
+          },
+          "cycles": {
+            "available_runs": 9,
+            "total_runs": 9,
+            "values": {
+              "count": 9,
+              "median": 75826180,
+              "min": 75298077,
+              "max": 82935920,
+              "mean": 76649070.1111111,
+              "stdev": 2400002.5382576915,
+              "relative_mad": 0.00307149852465204
+            },
+            "minimum_running_percent": 100
+          },
+          "instructions": {
+            "available_runs": 9,
+            "total_runs": 9,
+            "values": {
+              "count": 9,
+              "median": 348143153,
+              "min": 348107224,
+              "max": 348191957,
+              "mean": 348146413.4444444,
+              "stdev": 28630.444604961653,
+              "relative_mad": 6.306601123934785e-05
+            },
+            "minimum_running_percent": 100
+          }
+        },
+        "derived": {
+          "branch_miss_ratio": {
+            "count": 9,
+            "median": 0.009230442281882892,
+            "min": 0.009153681907152818,
+            "max": 0.00973166491616945,
+            "mean": 0.009319342265359708,
+            "stdev": 0.00021080779033078202,
+            "relative_mad": 0.0027151800104241327
+          },
+          "cache_miss_ratio": {
+            "count": 9,
+            "median": 0.30777102765238734,
+            "min": 0.29123369861435455,
+            "max": 0.33014371881748455,
+            "mean": 0.30707185258366454,
+            "stdev": 0.010938566349366855,
+            "relative_mad": 0.01932358238599273
+          },
+          "ipc": {
+            "count": 9,
+            "median": 4.591331819696047,
+            "min": 4.198325128605314,
+            "max": 4.623697362151758,
+            "mean": 4.545786153032834,
+            "stdev": 0.1330817058942496,
+            "relative_mad": 0.002952572594166179
+          }
+        }
+      }
+    },
+    "O3": {
+      "schema_version": 1,
+      "command": [
+        "/mnt/d/corelens/out/compare/arithmetic-O3",
+        "10000000"
+      ],
+      "warmups": 2,
+      "units": 10000000.0,
+      "perf": true,
+      "cpu": null,
+      "output_sha256": "ef047ddb8e6ab0b08da652ce1cf143c0cf1b65a2e9dc581a9cab88965863c0a7",
+      "samples": [
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.02858854,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "",
+          "counters": {
+            "branch-misses": {
+              "value": 52918,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "branches": {
+              "value": 5631432,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-misses": {
+              "value": 72911,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-references": {
+              "value": 234622,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cycles": {
+              "value": 77046737,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "instructions": {
+              "value": 348159402,
+              "status": "ok",
+              "running_percent": 100
+            }
+          },
+          "derived": {
+            "branch_miss_ratio": 0.009396899403206857,
+            "cache_miss_ratio": 0.31075943432414693,
+            "ipc": 4.518807876315385
+          },
+          "output_sha256": "ef047ddb8e6ab0b08da652ce1cf143c0cf1b65a2e9dc581a9cab88965863c0a7",
+          "counter_elapsed_seconds": 0.05262362
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.028465186,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "",
+          "counters": {
+            "branch-misses": {
+              "value": 50986,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "branches": {
+              "value": 5617508,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-misses": {
+              "value": 67947,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-references": {
+              "value": 224821,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cycles": {
+              "value": 76117130,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "instructions": {
+              "value": 348098057,
+              "status": "ok",
+              "running_percent": 100
+            }
+          },
+          "derived": {
+            "branch_miss_ratio": 0.009076266558053856,
+            "cache_miss_ratio": 0.3022271051191837,
+            "ipc": 4.573189464710506
+          },
+          "output_sha256": "ef047ddb8e6ab0b08da652ce1cf143c0cf1b65a2e9dc581a9cab88965863c0a7",
+          "counter_elapsed_seconds": 0.050424893
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.029394342,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "",
+          "counters": {
+            "branch-misses": {
+              "value": 51753,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "branches": {
+              "value": 5620527,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-misses": {
+              "value": 75281,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-references": {
+              "value": 237270,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cycles": {
+              "value": 77816884,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "instructions": {
+              "value": 348111086,
+              "status": "ok",
+              "running_percent": 100
+            }
+          },
+          "derived": {
+            "branch_miss_ratio": 0.009207855419963289,
+            "cache_miss_ratio": 0.3172798921060395,
+            "ipc": 4.473464730353377
+          },
+          "output_sha256": "ef047ddb8e6ab0b08da652ce1cf143c0cf1b65a2e9dc581a9cab88965863c0a7",
+          "counter_elapsed_seconds": 0.052718189
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.028346785,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "",
+          "counters": {
+            "branch-misses": {
+              "value": 51920,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "branches": {
+              "value": 5618605,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-misses": {
+              "value": 80095,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-references": {
+              "value": 239398,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cycles": {
+              "value": 75823889,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "instructions": {
+              "value": 348104640,
+              "status": "ok",
+              "running_percent": 100
+            }
+          },
+          "derived": {
+            "branch_miss_ratio": 0.009240727903100503,
+            "cache_miss_ratio": 0.3345683756756531,
+            "ipc": 4.590962618654393
+          },
+          "output_sha256": "ef047ddb8e6ab0b08da652ce1cf143c0cf1b65a2e9dc581a9cab88965863c0a7",
+          "counter_elapsed_seconds": 0.051420343
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.029663644,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "",
+          "counters": {
+            "branch-misses": {
+              "value": 52723,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "branches": {
+              "value": 5635045,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-misses": {
+              "value": 66255,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-references": {
+              "value": 226522,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cycles": {
+              "value": 75411918,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "instructions": {
+              "value": 348175243,
+              "status": "ok",
+              "running_percent": 100
+            }
+          },
+          "derived": {
+            "branch_miss_ratio": 0.009356269559515497,
+            "cache_miss_ratio": 0.2924881468466639,
+            "ipc": 4.616979016499752
+          },
+          "output_sha256": "ef047ddb8e6ab0b08da652ce1cf143c0cf1b65a2e9dc581a9cab88965863c0a7",
+          "counter_elapsed_seconds": 0.047721064
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.03341665,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "",
+          "counters": {
+            "branch-misses": {
+              "value": 52402,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "branches": {
+              "value": 5622541,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-misses": {
+              "value": 75959,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-references": {
+              "value": 236183,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cycles": {
+              "value": 76015939,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "instructions": {
+              "value": 348124028,
+              "status": "ok",
+              "running_percent": 100
+            }
+          },
+          "derived": {
+            "branch_miss_ratio": 0.009319985394504016,
+            "cache_miss_ratio": 0.32161078485750455,
+            "ipc": 4.579618861249612
+          },
+          "output_sha256": "ef047ddb8e6ab0b08da652ce1cf143c0cf1b65a2e9dc581a9cab88965863c0a7",
+          "counter_elapsed_seconds": 0.065248428
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.028426433,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "",
+          "counters": {
+            "branch-misses": {
+              "value": 52672,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "branches": {
+              "value": 5627402,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-misses": {
+              "value": 72421,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-references": {
+              "value": 229491,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cycles": {
+              "value": 75528407,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "instructions": {
+              "value": 348141124,
+              "status": "ok",
+              "running_percent": 100
+            }
+          },
+          "derived": {
+            "branch_miss_ratio": 0.009359914219741187,
+            "cache_miss_ratio": 0.31557228823788297,
+            "ipc": 4.609406418435384
+          },
+          "output_sha256": "ef047ddb8e6ab0b08da652ce1cf143c0cf1b65a2e9dc581a9cab88965863c0a7",
+          "counter_elapsed_seconds": 0.049008931
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.028401927,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "",
+          "counters": {
+            "branch-misses": {
+              "value": 51078,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "branches": {
+              "value": 5620934,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-misses": {
+              "value": 67614,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-references": {
+              "value": 223992,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cycles": {
+              "value": 75151948,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "instructions": {
+              "value": 348113217,
+              "status": "ok",
+              "running_percent": 100
+            }
+          },
+          "derived": {
+            "branch_miss_ratio": 0.00908710189445384,
+            "cache_miss_ratio": 0.30185899496410584,
+            "ipc": 4.632124998276824
+          },
+          "output_sha256": "ef047ddb8e6ab0b08da652ce1cf143c0cf1b65a2e9dc581a9cab88965863c0a7",
+          "counter_elapsed_seconds": 0.048077161
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.028419309,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "",
+          "counters": {
+            "branch-misses": {
+              "value": 51615,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "branches": {
+              "value": 5627236,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-misses": {
+              "value": 69977,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-references": {
+              "value": 224828,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cycles": {
+              "value": 75042115,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "instructions": {
+              "value": 348141596,
+              "status": "ok",
+              "running_percent": 100
+            }
+          },
+          "derived": {
+            "branch_miss_ratio": 0.009172353887414709,
+            "cache_miss_ratio": 0.3112468197911292,
+            "ipc": 4.639282834712215
+          },
+          "output_sha256": "ef047ddb8e6ab0b08da652ce1cf143c0cf1b65a2e9dc581a9cab88965863c0a7",
+          "counter_elapsed_seconds": 0.046667593
+        }
+      ],
+      "summary": {
+        "runtime_seconds": {
+          "count": 9,
+          "median": 0.028465186,
+          "min": 0.028346785,
+          "max": 0.03341665,
+          "mean": 0.029235868444444445,
+          "stdev": 0.0016396611129726707,
+          "relative_mad": 0.004159502066840548
+        },
+        "throughput_per_second": 351306329.0715894,
+        "counters": {
+          "branch-misses": {
+            "available_runs": 9,
+            "total_runs": 9,
+            "values": {
+              "count": 9,
+              "median": 51920,
+              "min": 50986,
+              "max": 52918,
+              "mean": 52007.444444444445,
+              "stdev": 713.447284512162,
+              "relative_mad": 0.01448382126348228
+            },
+            "minimum_running_percent": 100
+          },
+          "branches": {
+            "available_runs": 9,
+            "total_runs": 9,
+            "values": {
+              "count": 9,
+              "median": 5622541,
+              "min": 5617508,
+              "max": 5635045,
+              "mean": 5624581.111111111,
+              "stdev": 6031.952346555061,
+              "relative_mad": 0.0008350317054157542
+            },
+            "minimum_running_percent": 100
+          },
+          "cache-misses": {
+            "available_runs": 9,
+            "total_runs": 9,
+            "values": {
+              "count": 9,
+              "median": 72421,
+              "min": 66255,
+              "max": 80095,
+              "mean": 72051.11111111111,
+              "stdev": 4551.272856148169,
+              "relative_mad": 0.04885323317822179
+            },
+            "minimum_running_percent": 100
+          },
+          "cache-references": {
+            "available_runs": 9,
+            "total_runs": 9,
+            "values": {
+              "count": 9,
+              "median": 229491,
+              "min": 223992,
+              "max": 239398,
+              "mean": 230791.88888888888,
+              "stdev": 6094.537912025087,
+              "relative_mad": 0.02235817526613244
+            },
+            "minimum_running_percent": 100
+          },
+          "cycles": {
+            "available_runs": 9,
+            "total_runs": 9,
+            "values": {
+              "count": 9,
+              "median": 75823889,
+              "min": 75042115,
+              "max": 77816884,
+              "mean": 75994996.33333333,
+              "stdev": 911486.7884223555,
+              "relative_mad": 0.005433261277326464
+            },
+            "minimum_running_percent": 100
+          },
+          "instructions": {
+            "available_runs": 9,
+            "total_runs": 9,
+            "values": {
+              "count": 9,
+              "median": 348124028,
+              "min": 348098057,
+              "max": 348175243,
+              "mean": 348129821.4444444,
+              "stdev": 26239.017760346476,
+              "relative_mad": 5.046477285963151e-05
+            },
+            "minimum_running_percent": 100
+          }
+        },
+        "derived": {
+          "branch_miss_ratio": {
+            "count": 9,
+            "median": 0.009240727903100503,
+            "min": 0.009076266558053856,
+            "max": 0.009396899403206857,
+            "mean": 0.009246374915550417,
+            "stdev": 0.00011955314289047366,
+            "relative_mad": 0.012503523275068686
+          },
+          "cache_miss_ratio": {
+            "count": 9,
+            "median": 0.3112468197911292,
+            "min": 0.2924881468466639,
+            "max": 0.3345683756756531,
+            "mean": 0.31195687132470107,
+            "stdev": 0.012366733016276443,
+            "relative_mad": 0.02897929905917895
+          },
+          "ipc": {
+            "count": 9,
+            "median": 4.590962618654393,
+            "min": 4.473464730353377,
+            "max": 4.639282834712215,
+            "mean": 4.581537424356383,
+            "stdev": 0.05443267553322882,
+            "relative_mad": 0.005666872071588544
+          }
+        }
+      }
+    }
+  },
+  "trial_order": [
+    [
+      "O0",
+      "O2",
+      "O3"
+    ],
+    [
+      "O2",
+      "O0",
+      "O3"
+    ],
+    [
+      "O0",
+      "O3",
+      "O2"
+    ],
+    [
+      "O3",
+      "O0",
+      "O2"
+    ],
+    [
+      "O2",
+      "O0",
+      "O3"
+    ],
+    [
+      "O2",
+      "O3",
+      "O0"
+    ],
+    [
+      "O2",
+      "O0",
+      "O3"
+    ],
+    [
+      "O2",
+      "O0",
+      "O3"
+    ],
+    [
+      "O2",
+      "O0",
+      "O3"
+    ]
+  ],
+  "comparisons": {
+    "O2": {
+      "speedup": 1.874933342001681,
+      "ci95": [
+        1.8543768045108717,
+        1.8971010837361084
+      ],
+      "paired": true,
+      "verdict": "improved",
+      "counter_deltas": {
+        "branch-misses": {
+          "baseline_median": 54741,
+          "candidate_median": 51959,
+          "relative_change": -0.05082113954805356
+        },
+        "branches": {
+          "baseline_median": 20640302,
+          "candidate_median": 5627791,
+          "relative_change": -0.7273396968707144
+        },
+        "cache-misses": {
+          "baseline_median": 76218,
+          "candidate_median": 69430,
+          "relative_change": -0.08906032695688681
+        },
+        "cache-references": {
+          "baseline_median": 245144,
+          "candidate_median": 228294,
+          "relative_change": -0.06873511079202432
+        },
+        "cycles": {
+          "baseline_median": 154353750,
+          "candidate_median": 75826180,
+          "relative_change": -0.5087506458378885
+        },
+        "instructions": {
+          "baseline_median": 213201836,
+          "candidate_median": 348143153,
+          "relative_change": 0.632927556027238
+        }
+      },
+      "output_matches": true
+    },
+    "O3": {
+      "speedup": 1.8682622032798428,
+      "ci95": [
+        1.8008817123074967,
+        1.8890591724962467
+      ],
+      "paired": true,
+      "verdict": "improved",
+      "counter_deltas": {
+        "branch-misses": {
+          "baseline_median": 54741,
+          "candidate_median": 51920,
+          "relative_change": -0.05153358542956832
+        },
+        "branches": {
+          "baseline_median": 20640302,
+          "candidate_median": 5622541,
+          "relative_change": -0.7275940536141381
+        },
+        "cache-misses": {
+          "baseline_median": 76218,
+          "candidate_median": 72421,
+          "relative_change": -0.04981762838174708
+        },
+        "cache-references": {
+          "baseline_median": 245144,
+          "candidate_median": 229491,
+          "relative_change": -0.06385226642300035
+        },
+        "cycles": {
+          "baseline_median": 154353750,
+          "candidate_median": 75823889,
+          "relative_change": -0.5087654883668198
+        },
+        "instructions": {
+          "baseline_median": 213201836,
+          "candidate_median": 348124028,
+          "relative_change": 0.6328378522969191
+        }
+      },
+      "output_matches": true
+    }
+  },
+  "evidence_snapshot": {
+    "original_artifact": "out/wsl-comparison.json",
+    "original_artifact_sha256": "36e349e917f0abb9c74edf053569a3f592756397eb35315aabbef2349c64b70b",
+    "omitted_fields": [
+      "assembly",
+      "builds[].optimization_remarks"
+    ],
+    "note": "Measured samples, summaries, comparisons, environment, and build provenance are preserved. Bulky assembly and LLVM remark payloads are omitted."
+  }
+}

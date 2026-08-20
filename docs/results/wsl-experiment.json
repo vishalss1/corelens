@@ -1,0 +1,1328 @@
+{
+  "schema_version": 1,
+  "kind": "experiment",
+  "environment": {
+    "timestamp_utc": "2026-10-14T02:48:13.902952+00:00",
+    "system": "Linux",
+    "release": "6.18.33.2-microsoft-standard-WSL2",
+    "machine": "x86_64",
+    "processor": "",
+    "python": "3.14.4",
+    "cpuinfo": "AMD Ryzen 7 6800HS with Radeon Graphics",
+    "governor_cpu0": null,
+    "perf_event_paranoid": "2",
+    "allowed_cpus": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ]
+  },
+  "manifests": {
+    "baseline": {
+      "schema_version": 1,
+      "source": "/mnt/d/corelens/workloads/vector.cpp",
+      "source_sha256": "f580419f612f6c6206cefbcfb8a12d6a1f5ebfd895274cd35a614973ecd24bf5",
+      "compiler_version": "Ubuntu clang version 21.1.8 (6ubuntu1)\nTarget: x86_64-pc-linux-gnu\nThread model: posix\nInstalledDir: /usr/lib/llvm-21/bin",
+      "flags": [],
+      "builds": [
+        {
+          "name": "O2",
+          "binary": "/mnt/d/corelens/out/experiment/baseline/vector-O2",
+          "command": [
+            "clang++",
+            "-std=c++17",
+            "-O2",
+            "-g",
+            "/mnt/d/corelens/workloads/vector.cpp",
+            "-o",
+            "/mnt/d/corelens/out/experiment/baseline/vector-O2"
+          ],
+          "diagnostics": "",
+          "sha256": "93a0aaacef41336386fddb594d5eb78c14be5386038e83e0a8a1c23e16b18526"
+        }
+      ]
+    },
+    "candidate": {
+      "schema_version": 1,
+      "source": "/mnt/d/corelens/workloads/vector.cpp",
+      "source_sha256": "f580419f612f6c6206cefbcfb8a12d6a1f5ebfd895274cd35a614973ecd24bf5",
+      "compiler_version": "Ubuntu clang version 21.1.8 (6ubuntu1)\nTarget: x86_64-pc-linux-gnu\nThread model: posix\nInstalledDir: /usr/lib/llvm-21/bin",
+      "flags": [
+        "-O3"
+      ],
+      "builds": [
+        {
+          "name": "O2",
+          "binary": "/mnt/d/corelens/out/experiment/candidate/vector-O2",
+          "command": [
+            "clang++",
+            "-std=c++17",
+            "-O2",
+            "-g",
+            "-O3",
+            "/mnt/d/corelens/workloads/vector.cpp",
+            "-o",
+            "/mnt/d/corelens/out/experiment/candidate/vector-O2"
+          ],
+          "diagnostics": "",
+          "sha256": "e36c079ca5ada7afc9f66a843954157b0ef2159b4acdefec0bb89a9a9235f811"
+        }
+      ]
+    }
+  },
+  "baseline": "baseline",
+  "variants": {
+    "baseline": {
+      "schema_version": 1,
+      "command": [
+        "/mnt/d/corelens/out/experiment/baseline/vector-O2",
+        "2000000"
+      ],
+      "warmups": 2,
+      "units": 2000000.0,
+      "perf": true,
+      "cpu": null,
+      "output_sha256": "a33ebb570e926ccda3516a7ec05b6482c0010ca7ac0a7a008f9cb9a22c3270ef",
+      "samples": [
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.057224526,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "",
+          "counters": {
+            "branch-misses": {
+              "value": 803565,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "branches": {
+              "value": 16783587,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-misses": {
+              "value": 727966,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-references": {
+              "value": 27607483,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cycles": {
+              "value": 175890538,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "instructions": {
+              "value": 233211404,
+              "status": "ok",
+              "running_percent": 100
+            }
+          },
+          "derived": {
+            "branch_miss_ratio": 0.04787802512061337,
+            "cache_miss_ratio": 0.026368430617162746,
+            "ipc": 1.3258894233412373
+          },
+          "output_sha256": "a33ebb570e926ccda3516a7ec05b6482c0010ca7ac0a7a008f9cb9a22c3270ef",
+          "counter_elapsed_seconds": 0.097567658
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.068662654,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "",
+          "counters": {
+            "branch-misses": {
+              "value": 805384,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "branches": {
+              "value": 16849153,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-misses": {
+              "value": 655731,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-references": {
+              "value": 27774355,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cycles": {
+              "value": 170294282,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "instructions": {
+              "value": 233502534,
+              "status": "ok",
+              "running_percent": 100
+            }
+          },
+          "derived": {
+            "branch_miss_ratio": 0.04779967277880378,
+            "cache_miss_ratio": 0.023609225128720362,
+            "ipc": 1.3711707243347138
+          },
+          "output_sha256": "a33ebb570e926ccda3516a7ec05b6482c0010ca7ac0a7a008f9cb9a22c3270ef",
+          "counter_elapsed_seconds": 0.095870173
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.06552806,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "",
+          "counters": {
+            "branch-misses": {
+              "value": 824969,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "branches": {
+              "value": 17131106,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-misses": {
+              "value": 597050,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-references": {
+              "value": 27467265,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cycles": {
+              "value": 162338039,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "instructions": {
+              "value": 234825999,
+              "status": "ok",
+              "running_percent": 100
+            }
+          },
+          "derived": {
+            "branch_miss_ratio": 0.04815620194049351,
+            "cache_miss_ratio": 0.02173678376787787,
+            "ipc": 1.4465247975553037
+          },
+          "output_sha256": "a33ebb570e926ccda3516a7ec05b6482c0010ca7ac0a7a008f9cb9a22c3270ef",
+          "counter_elapsed_seconds": 0.085191171
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.056150351,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "",
+          "counters": {
+            "branch-misses": {
+              "value": 796389,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "branches": {
+              "value": 16772688,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-misses": {
+              "value": 576528,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-references": {
+              "value": 27258095,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cycles": {
+              "value": 149578922,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "instructions": {
+              "value": 233171817,
+              "status": "ok",
+              "running_percent": 100
+            }
+          },
+          "derived": {
+            "branch_miss_ratio": 0.04748129816759246,
+            "cache_miss_ratio": 0.021150707707196705,
+            "ipc": 1.5588547763434208
+          },
+          "output_sha256": "a33ebb570e926ccda3516a7ec05b6482c0010ca7ac0a7a008f9cb9a22c3270ef",
+          "counter_elapsed_seconds": 0.073035304
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.055046994,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "",
+          "counters": {
+            "branch-misses": {
+              "value": 804872,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "branches": {
+              "value": 16823900,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-misses": {
+              "value": 610195,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-references": {
+              "value": 27728155,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cycles": {
+              "value": 163864372,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "instructions": {
+              "value": 233418135,
+              "status": "ok",
+              "running_percent": 100
+            }
+          },
+          "derived": {
+            "branch_miss_ratio": 0.047840988118093904,
+            "cache_miss_ratio": 0.022006332552598613,
+            "ipc": 1.4244593388488378
+          },
+          "output_sha256": "a33ebb570e926ccda3516a7ec05b6482c0010ca7ac0a7a008f9cb9a22c3270ef",
+          "counter_elapsed_seconds": 0.089473599
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.057251203,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "",
+          "counters": {
+            "branch-misses": {
+              "value": 798611,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "branches": {
+              "value": 16795924,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-misses": {
+              "value": 573292,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-references": {
+              "value": 27253842,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cycles": {
+              "value": 151389654,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "instructions": {
+              "value": 233258661,
+              "status": "ok",
+              "running_percent": 100
+            }
+          },
+          "derived": {
+            "branch_miss_ratio": 0.04754790507506464,
+            "cache_miss_ratio": 0.021035272751636264,
+            "ipc": 1.5407833681950287
+          },
+          "output_sha256": "a33ebb570e926ccda3516a7ec05b6482c0010ca7ac0a7a008f9cb9a22c3270ef",
+          "counter_elapsed_seconds": 0.074083695
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.059700837,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "",
+          "counters": {
+            "branch-misses": {
+              "value": 838017,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "branches": {
+              "value": 17316151,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-misses": {
+              "value": 788918,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-references": {
+              "value": 27227022,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cycles": {
+              "value": 200031961,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "instructions": {
+              "value": 235933677,
+              "status": "ok",
+              "running_percent": 100
+            }
+          },
+          "derived": {
+            "branch_miss_ratio": 0.04839510812766648,
+            "cache_miss_ratio": 0.02897555230241486,
+            "ipc": 1.1794798982148658
+          },
+          "output_sha256": "a33ebb570e926ccda3516a7ec05b6482c0010ca7ac0a7a008f9cb9a22c3270ef",
+          "counter_elapsed_seconds": 0.094114527
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.067577013,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "",
+          "counters": {
+            "branch-misses": {
+              "value": 800026,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "branches": {
+              "value": 16778131,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-misses": {
+              "value": 496026,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-references": {
+              "value": 27352356,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cycles": {
+              "value": 146686563,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "instructions": {
+              "value": 233190434,
+              "status": "ok",
+              "running_percent": 100
+            }
+          },
+          "derived": {
+            "branch_miss_ratio": 0.047682665011973026,
+            "cache_miss_ratio": 0.01813467183594715,
+            "ipc": 1.5897191210349648
+          },
+          "output_sha256": "a33ebb570e926ccda3516a7ec05b6482c0010ca7ac0a7a008f9cb9a22c3270ef",
+          "counter_elapsed_seconds": 0.073336456
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.066115405,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "",
+          "counters": {
+            "branch-misses": {
+              "value": 839009,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "branches": {
+              "value": 17351796,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-misses": {
+              "value": 580382,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-references": {
+              "value": 27290675,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cycles": {
+              "value": 147319833,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "instructions": {
+              "value": 236103223,
+              "status": "ok",
+              "running_percent": 100
+            }
+          },
+          "derived": {
+            "branch_miss_ratio": 0.0483528621475264,
+            "cache_miss_ratio": 0.02126667808692896,
+            "ipc": 1.6026574168055159
+          },
+          "output_sha256": "a33ebb570e926ccda3516a7ec05b6482c0010ca7ac0a7a008f9cb9a22c3270ef",
+          "counter_elapsed_seconds": 0.073919976
+        }
+      ],
+      "summary": {
+        "runtime_seconds": {
+          "count": 9,
+          "median": 0.059700837,
+          "min": 0.055046994,
+          "max": 0.068662654,
+          "mean": 0.06147300477777778,
+          "stdev": 0.005426593585724331,
+          "relative_mad": 0.07795272619042172
+        },
+        "throughput_per_second": 33500367.842414003,
+        "counters": {
+          "branch-misses": {
+            "available_runs": 9,
+            "total_runs": 9,
+            "values": {
+              "count": 9,
+              "median": 804872,
+              "min": 796389,
+              "max": 839009,
+              "mean": 812315.7777777778,
+              "stdev": 16976.978064262334,
+              "relative_mad": 0.007778876641254758
+            },
+            "minimum_running_percent": 100
+          },
+          "branches": {
+            "available_runs": 9,
+            "total_runs": 9,
+            "values": {
+              "count": 9,
+              "median": 16823900,
+              "min": 16772688,
+              "max": 17351796,
+              "mean": 16955826.222222224,
+              "stdev": 241475.40923548394,
+              "relative_mad": 0.0027204750384869146
+            },
+            "minimum_running_percent": 100
+          },
+          "cache-misses": {
+            "available_runs": 9,
+            "total_runs": 9,
+            "values": {
+              "count": 9,
+              "median": 597050,
+              "min": 496026,
+              "max": 788918,
+              "mean": 622898.6666666666,
+              "stdev": 88758.42424665955,
+              "relative_mad": 0.03979231220165815
+            },
+            "minimum_running_percent": 100
+          },
+          "cache-references": {
+            "available_runs": 9,
+            "total_runs": 9,
+            "values": {
+              "count": 9,
+              "median": 27352356,
+              "min": 27227022,
+              "max": 27774355,
+              "mean": 27439916.444444444,
+              "stdev": 214098.0288221444,
+              "relative_mad": 0.004201064069215829
+            },
+            "minimum_running_percent": 100
+          },
+          "cycles": {
+            "available_runs": 9,
+            "total_runs": 9,
+            "values": {
+              "count": 9,
+              "median": 162338039,
+              "min": 146686563,
+              "max": 200031961,
+              "mean": 163043796,
+              "stdev": 17388315.245684773,
+              "relative_mad": 0.07859597835846717
+            },
+            "minimum_running_percent": 100
+          },
+          "instructions": {
+            "available_runs": 9,
+            "total_runs": 9,
+            "values": {
+              "count": 9,
+              "median": 233418135,
+              "min": 233171817,
+              "max": 236103223,
+              "mean": 234068431.55555555,
+              "stdev": 1219711.6887435028,
+              "relative_mad": 0.0009755068945264257
+            },
+            "minimum_running_percent": 100
+          }
+        },
+        "derived": {
+          "branch_miss_ratio": {
+            "count": 9,
+            "median": 0.047840988118093904,
+            "min": 0.04748129816759246,
+            "max": 0.04839510812766648,
+            "mean": 0.047903858498647506,
+            "stdev": 0.0003309586513902487,
+            "relative_mad": 0.006126191254783334
+          },
+          "cache_miss_ratio": {
+            "count": 9,
+            "median": 0.02173678376787787,
+            "min": 0.01813467183594715,
+            "max": 0.02897555230241486,
+            "mean": 0.022698183861164838,
+            "stdev": 0.003223814063964292,
+            "relative_mad": 0.03227299050921619
+          },
+          "ipc": {
+            "count": 9,
+            "median": 1.4465247975553037,
+            "min": 1.1794798982148658,
+            "max": 1.6026574168055159,
+            "mean": 1.448837651630432,
+            "stdev": 0.14069806337194649,
+            "relative_mad": 0.07765506611290741
+          }
+        }
+      }
+    },
+    "candidate": {
+      "schema_version": 1,
+      "command": [
+        "/mnt/d/corelens/out/experiment/candidate/vector-O2",
+        "2000000"
+      ],
+      "warmups": 2,
+      "units": 2000000.0,
+      "perf": true,
+      "cpu": null,
+      "output_sha256": "a33ebb570e926ccda3516a7ec05b6482c0010ca7ac0a7a008f9cb9a22c3270ef",
+      "samples": [
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.060889807,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "",
+          "counters": {
+            "branch-misses": {
+              "value": 805263,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "branches": {
+              "value": 16777317,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-misses": {
+              "value": 743938,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-references": {
+              "value": 27814510,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cycles": {
+              "value": 183959414,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "instructions": {
+              "value": 233195595,
+              "status": "ok",
+              "running_percent": 100
+            }
+          },
+          "derived": {
+            "branch_miss_ratio": 0.04799712611974847,
+            "cache_miss_ratio": 0.02674639963098397,
+            "ipc": 1.2676469767402063
+          },
+          "output_sha256": "a33ebb570e926ccda3516a7ec05b6482c0010ca7ac0a7a008f9cb9a22c3270ef",
+          "counter_elapsed_seconds": 0.114952811
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.06561779,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "",
+          "counters": {
+            "branch-misses": {
+              "value": 801406,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "branches": {
+              "value": 16748560,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-misses": {
+              "value": 625395,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-references": {
+              "value": 27541125,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cycles": {
+              "value": 162525909,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "instructions": {
+              "value": 233096210,
+              "status": "ok",
+              "running_percent": 100
+            }
+          },
+          "derived": {
+            "branch_miss_ratio": 0.04784924793534489,
+            "cache_miss_ratio": 0.022707678063259944,
+            "ipc": 1.4342095450147583
+          },
+          "output_sha256": "a33ebb570e926ccda3516a7ec05b6482c0010ca7ac0a7a008f9cb9a22c3270ef",
+          "counter_elapsed_seconds": 0.088270411
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.059501899,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "",
+          "counters": {
+            "branch-misses": {
+              "value": 826382,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "branches": {
+              "value": 17127491,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-misses": {
+              "value": 560281,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-references": {
+              "value": 27492347,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cycles": {
+              "value": 163932378,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "instructions": {
+              "value": 234809396,
+              "status": "ok",
+              "running_percent": 100
+            }
+          },
+          "derived": {
+            "branch_miss_ratio": 0.04824886493882846,
+            "cache_miss_ratio": 0.020379525982266992,
+            "ipc": 1.4323552117324865
+          },
+          "output_sha256": "a33ebb570e926ccda3516a7ec05b6482c0010ca7ac0a7a008f9cb9a22c3270ef",
+          "counter_elapsed_seconds": 0.084708434
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.051368676,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "",
+          "counters": {
+            "branch-misses": {
+              "value": 795485,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "branches": {
+              "value": 16781246,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-misses": {
+              "value": 573789,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-references": {
+              "value": 27303656,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cycles": {
+              "value": 152649596,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "instructions": {
+              "value": 233197159,
+              "status": "ok",
+              "running_percent": 100
+            }
+          },
+          "derived": {
+            "branch_miss_ratio": 0.04740321427860601,
+            "cache_miss_ratio": 0.02101509775833683,
+            "ipc": 1.5276631259476114
+          },
+          "output_sha256": "a33ebb570e926ccda3516a7ec05b6482c0010ca7ac0a7a008f9cb9a22c3270ef",
+          "counter_elapsed_seconds": 0.075392352
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.077355162,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "",
+          "counters": {
+            "branch-misses": {
+              "value": 804009,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "branches": {
+              "value": 16837804,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-misses": {
+              "value": 526021,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-references": {
+              "value": 27415967,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cycles": {
+              "value": 154919978,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "instructions": {
+              "value": 233464133,
+              "status": "ok",
+              "running_percent": 100
+            }
+          },
+          "derived": {
+            "branch_miss_ratio": 0.047750229186656404,
+            "cache_miss_ratio": 0.01918666593084242,
+            "ipc": 1.5069982323390207
+          },
+          "output_sha256": "a33ebb570e926ccda3516a7ec05b6482c0010ca7ac0a7a008f9cb9a22c3270ef",
+          "counter_elapsed_seconds": 0.079501389
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.057019479,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "",
+          "counters": {
+            "branch-misses": {
+              "value": 823092,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "branches": {
+              "value": 17090754,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-misses": {
+              "value": 553194,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-references": {
+              "value": 27357993,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cycles": {
+              "value": 156816399,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "instructions": {
+              "value": 234668115,
+              "status": "ok",
+              "running_percent": 100
+            }
+          },
+          "derived": {
+            "branch_miss_ratio": 0.04816007532493885,
+            "cache_miss_ratio": 0.02022056223203215,
+            "ipc": 1.4964513692219141
+          },
+          "output_sha256": "a33ebb570e926ccda3516a7ec05b6482c0010ca7ac0a7a008f9cb9a22c3270ef",
+          "counter_elapsed_seconds": 0.084611149
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.063297451,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "",
+          "counters": {
+            "branch-misses": {
+              "value": 796863,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "branches": {
+              "value": 16739897,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-misses": {
+              "value": 632397,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-references": {
+              "value": 27157925,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cycles": {
+              "value": 168694662,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "instructions": {
+              "value": 233058532,
+              "status": "ok",
+              "running_percent": 100
+            }
+          },
+          "derived": {
+            "branch_miss_ratio": 0.04760262264457183,
+            "cache_miss_ratio": 0.0232859100980653,
+            "ipc": 1.3815406441254199
+          },
+          "output_sha256": "a33ebb570e926ccda3516a7ec05b6482c0010ca7ac0a7a008f9cb9a22c3270ef",
+          "counter_elapsed_seconds": 0.098529045
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.051241574,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "",
+          "counters": {
+            "branch-misses": {
+              "value": 798306,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "branches": {
+              "value": 16804540,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-misses": {
+              "value": 588791,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-references": {
+              "value": 27244628,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cycles": {
+              "value": 149254350,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "instructions": {
+              "value": 233303052,
+              "status": "ok",
+              "running_percent": 100
+            }
+          },
+          "derived": {
+            "branch_miss_ratio": 0.04750537652324907,
+            "cache_miss_ratio": 0.021611269568444832,
+            "ipc": 1.5631239692511474
+          },
+          "output_sha256": "a33ebb570e926ccda3516a7ec05b6482c0010ca7ac0a7a008f9cb9a22c3270ef",
+          "counter_elapsed_seconds": 0.073087473
+        },
+        {
+          "schema_version": 1,
+          "elapsed_seconds": 0.061605777,
+          "exit_code": 0,
+          "timed_out": false,
+          "output_truncated": false,
+          "stderr": "",
+          "counter_error": "",
+          "counters": {
+            "branch-misses": {
+              "value": 835136,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "branches": {
+              "value": 17269044,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-misses": {
+              "value": 492799,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cache-references": {
+              "value": 27206410,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "cycles": {
+              "value": 147924995,
+              "status": "ok",
+              "running_percent": 100
+            },
+            "instructions": {
+              "value": 235756559,
+              "status": "ok",
+              "running_percent": 100
+            }
+          },
+          "derived": {
+            "branch_miss_ratio": 0.04836029139771721,
+            "cache_miss_ratio": 0.01811334167205449,
+            "ipc": 1.5937574241594532
+          },
+          "output_sha256": "a33ebb570e926ccda3516a7ec05b6482c0010ca7ac0a7a008f9cb9a22c3270ef",
+          "counter_elapsed_seconds": 0.07206996
+        }
+      ],
+      "summary": {
+        "runtime_seconds": {
+          "count": 9,
+          "median": 0.060889807,
+          "min": 0.051241574,
+          "max": 0.077355162,
+          "mean": 0.060877512777777774,
+          "stdev": 0.007908980685353421,
+          "relative_mad": 0.06356282259196518
+        },
+        "throughput_per_second": 32846220.057816904,
+        "counters": {
+          "branch-misses": {
+            "available_runs": 9,
+            "total_runs": 9,
+            "values": {
+              "count": 9,
+              "median": 804009,
+              "min": 795485,
+              "max": 835136,
+              "mean": 809549.1111111111,
+              "stdev": 14671.242674399164,
+              "relative_mad": 0.008887960209400641
+            },
+            "minimum_running_percent": 100
+          },
+          "branches": {
+            "available_runs": 9,
+            "total_runs": 9,
+            "values": {
+              "count": 9,
+              "median": 16804540,
+              "min": 16739897,
+              "max": 17269044,
+              "mean": 16908517,
+              "stdev": 198236.4412645919,
+              "relative_mad": 0.0033312426284801606
+            },
+            "minimum_running_percent": 100
+          },
+          "cache-misses": {
+            "available_runs": 9,
+            "total_runs": 9,
+            "values": {
+              "count": 9,
+              "median": 573789,
+              "min": 492799,
+              "max": 743938,
+              "mean": 588511.6666666666,
+              "stdev": 73118.72955508732,
+              "relative_mad": 0.08325011458916082
+            },
+            "minimum_running_percent": 100
+          },
+          "cache-references": {
+            "available_runs": 9,
+            "total_runs": 9,
+            "values": {
+              "count": 9,
+              "median": 27357993,
+              "min": 27157925,
+              "max": 27814510,
+              "mean": 27392729,
+              "stdev": 203502.6163062775,
+              "relative_mad": 0.0049109596599428915
+            },
+            "minimum_running_percent": 100
+          },
+          "cycles": {
+            "available_runs": 9,
+            "total_runs": 9,
+            "values": {
+              "count": 9,
+              "median": 156816399,
+              "min": 147924995,
+              "max": 183959414,
+              "mean": 160075297.8888889,
+              "stdev": 11306461.477091268,
+              "relative_mad": 0.045377773277398115
+            },
+            "minimum_running_percent": 100
+          },
+          "instructions": {
+            "available_runs": 9,
+            "total_runs": 9,
+            "values": {
+              "count": 9,
+              "median": 233303052,
+              "min": 233058532,
+              "max": 235756559,
+              "mean": 233838750.1111111,
+              "stdev": 982388.3339434111,
+              "relative_mad": 0.0008865807722052432
+            },
+            "minimum_running_percent": 100
+          }
+        },
+        "derived": {
+          "branch_miss_ratio": {
+            "count": 9,
+            "median": 0.04784924793534489,
+            "min": 0.04740321427860601,
+            "max": 0.04836029139771721,
+            "mean": 0.0478752275944068,
+            "stdev": 0.00033931707644318,
+            "relative_mad": 0.006495972308989239
+          },
+          "cache_miss_ratio": {
+            "count": 9,
+            "median": 0.02101509775833683,
+            "min": 0.01811334167205449,
+            "max": 0.02674639963098397,
+            "mean": 0.021474050104031882,
+            "stdev": 0.00255263376167758,
+            "relative_mad": 0.08054115780887365
+          },
+          "ipc": {
+            "count": 9,
+            "median": 1.4964513692219141,
+            "min": 1.2676469767402063,
+            "max": 1.5937574241594532,
+            "mean": 1.4670829442813353,
+            "stdev": 0.10048312134193008,
+            "relative_mad": 0.04283210186960817
+          }
+        }
+      }
+    }
+  },
+  "trial_order": [
+    [
+      "baseline",
+      "candidate"
+    ],
+    [
+      "baseline",
+      "candidate"
+    ],
+    [
+      "baseline",
+      "candidate"
+    ],
+    [
+      "candidate",
+      "baseline"
+    ],
+    [
+      "baseline",
+      "candidate"
+    ],
+    [
+      "baseline",
+      "candidate"
+    ],
+    [
+      "baseline",
+      "candidate"
+    ],
+    [
+      "candidate",
+      "baseline"
+    ],
+    [
+      "candidate",
+      "baseline"
+    ]
+  ],
+  "comparisons": {
+    "candidate": {
+      "speedup": 1.0464030257648118,
+      "ci95": [
+        0.9398046868501324,
+        1.1012767844602742
+      ],
+      "paired": true,
+      "verdict": "inconclusive",
+      "counter_deltas": {
+        "branch-misses": {
+          "baseline_median": 804872,
+          "candidate_median": 804009,
+          "relative_change": -0.00107222017910924
+        },
+        "branches": {
+          "baseline_median": 16823900,
+          "candidate_median": 16804540,
+          "relative_change": -0.001150743882215144
+        },
+        "cache-misses": {
+          "baseline_median": 597050,
+          "candidate_median": 573789,
+          "relative_change": -0.03895988610669121
+        },
+        "cache-references": {
+          "baseline_median": 27352356,
+          "candidate_median": 27357993,
+          "relative_change": 0.00020608827992729672
+        },
+        "cycles": {
+          "baseline_median": 162338039,
+          "candidate_median": 156816399,
+          "relative_change": -0.03401322348115832
+        },
+        "instructions": {
+          "baseline_median": 233418135,
+          "candidate_median": 233303052,
+          "relative_change": -0.0004930336710984307
+        }
+      },
+      "output_matches": true
+    }
+  },
+  "decision": "inconclusive",
+  "correctness_scope": "Exact stdout agreement for the supplied input only; this is not a proof for all inputs.",
+  "evidence_snapshot": {
+    "original_artifact": "out/wsl-experiment.json",
+    "original_artifact_sha256": "fdb1243e9ebc695a10d63bd65e0776d4e54842223609d21513819d31db68419e",
+    "omitted_fields": [
+      "assembly",
+      "builds[].optimization_remarks"
+    ],
+    "note": "Measured samples, summaries, comparisons, environment, and build provenance are preserved. Bulky assembly and LLVM remark payloads are omitted."
+  }
+}
